@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stake — Le coût d'avoir raison</title>
+  <meta name="description" content="Infrastructure de dépôt, d'engagement et de résolution de takes. Une opinion structurée, falsifiable et assumée publiquement possède plus de valeur qu'une réaction instantanée sans conséquence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2212%22 fill=%22%23c8a96e%22/><text y=%22.9em%22 x=%2250%22 text-anchor=%22middle%22 font-size=%2270%22 font-family=%22serif%22 font-weight=%22bold%22 fill=%22%230c0c0e%22>S</text></svg>">
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="#home" class="navbar-brand">
+        <div class="navbar-logo">S</div>
+        <span class="navbar-title">Stake</span>
+      </a>
+      <ul class="navbar-nav">
+        <li><a href="#home" class="active" data-nav="home">Accueil</a></li>
+        <li><a href="#registre" data-nav="registre">Registre</a></li>
+        <li><a href="#create" data-nav="create">Déposer</a></li>
+        <li><a href="#manifesto" data-nav="manifesto">Manifeste</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="#create" class="btn btn-primary btn-sm" data-nav="create">Déposer une take</a>
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Connexion bientôt disponible')">Connexion</button>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- ====== PAGE: HOME ====== -->
+  <div id="page-home" class="page active">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-eyebrow">Infrastructure d'engagement vérifiable</div>
+        <h1>Le coût d'avoir <em>raison</em></h1>
+        <p class="hero-subtitle">
+          Déposez une hypothèse. Définissez ses conditions de résolution. 
+          Engagez publiquement. Assumez le résultat.
+        </p>
+        <div class="hero-actions">
+          <a href="#create" class="btn btn-primary btn-lg" data-nav="create">Déposer une take</a>
+          <a href="#registre" class="btn btn-secondary btn-lg" data-nav="registre">Explorer le registre</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="container">
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-value">147</div>
+          <div class="stat-label">Takes déposées</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">89</div>
+          <div class="stat-label">Scellées</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">34</div>
+          <div class="stat-label">Résolues</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">€42.8k</div>
+          <div class="stat-label">Engagés</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Principles -->
+    <section class="principles">
+      <div class="container">
+        <div class="section-header">
+          <h2>Principes fondateurs</h2>
+          <p>Une infrastructure conçue pour la responsabilité intellectuelle, pas pour le spectacle.</p>
+        </div>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <div class="principle-icon" style="background: var(--accent-bg); color: var(--accent);">&#9878;</div>
+            <h3>Résolvable</h3>
+            <p>Chaque take doit définir une échéance, un protocole de résolution et des preuves attendues. Pas de vague, pas d'ambiguïté.</p>
+          </div>
+          <div class="principle-card">
+            <div class="principle-icon" style="background: var(--green-bg); color: var(--green);">&#9875;</div>
+            <h3>Immutable</h3>
+            <p>Après scellement, les éléments critiques deviennent immuables. Toute modification produit une nouvelle version traçable.</p>
+          </div>
+          <div class="principle-card">
+            <div class="principle-icon" style="background: var(--blue-bg); color: var(--blue);">&#128269;</div>
+            <h3>Traçable</h3>
+            <p>Chaque événement est historisé, horodaté, auditable. Les décisions sont motivées. L'historique est non destructif.</p>
+          </div>
+          <div class="principle-card">
+            <div class="principle-icon" style="background: var(--orange-bg); color: var(--orange);">&#9881;</div>
+            <h3>Protocole de preuve</h3>
+            <p>Le débat se déplace vers les preuves. APIs, données publiques, audits, constats — le protocole fait partie intégrante de la take.</p>
+          </div>
+          <div class="principle-card">
+            <div class="principle-icon" style="background: var(--purple-bg); color: var(--purple);">&#128176;</div>
+            <h3>Coût de conviction</h3>
+            <p>L'engagement économique est une friction volontaire, une preuve de conviction — pas un investissement ni une spéculation.</p>
+          </div>
+          <div class="principle-card">
+            <div class="principle-icon" style="background: var(--red-bg); color: var(--red);">&#128218;</div>
+            <h3>Archive durable</h3>
+            <p>Chaque take est une capsule temporelle. Un engagement documenté. Une mémoire des convictions dans le temps.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+      <div class="container-narrow">
+        <div class="section-header">
+          <h2>Comment ça fonctionne</h2>
+          <p>Du brouillon à la résolution, chaque étape est explicite et traçable.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">01</div>
+            <div>
+              <h3>Formulez votre take</h3>
+              <p>Rédigez une affirmation claire et falsifiable. Définissez l'échéance, les preuves attendues, et le protocole de résolution. Plus votre take est précise, plus elle a de valeur.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">02</div>
+            <div>
+              <h3>Négociez les conditions</h3>
+              <p>Les parties discutent les critères, proposent des amendements, acceptent les protocoles. Tout est tracé. L'équité se construit avant le scellement, jamais après.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">03</div>
+            <div>
+              <h3>Scellez et engagez</h3>
+              <p>Une fois les conditions acceptées, la take est scellée. Les fonds sont immobilisés. L'engagement est public, les montants visibles, les règles gravées.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">04</div>
+            <div>
+              <h3>Résolution et redistribution</h3>
+              <p>À l'échéance, les preuves sont examinées selon le protocole défini. La résolution est documentée. Les fonds sont redistribués selon les règles prévues.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Prêt à engager vos convictions ?</h2>
+        <p>Une affirmation publique gagne en valeur lorsqu'elle accepte une méthode de vérification, un horizon temporel, un coût d'engagement et une mémoire durable.</p>
+        <a href="#create" class="btn btn-primary btn-lg" data-nav="create">Déposer votre première take</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
+          <div class="footer-links">
+            <a href="#manifesto" data-nav="manifesto">Manifeste</a>
+            <a href="#" onclick="showToast('Bientôt disponible'); return false;">Documentation</a>
+            <a href="https://github.com/chtabay/Stake" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ====== PAGE: REGISTRE ====== -->
+  <div id="page-registre" class="page">
+    <div class="container">
+      <div class="registre-header">
+        <div class="registre-title-row">
+          <h1>Registre des takes</h1>
+          <a href="#create" class="btn btn-primary btn-sm" data-nav="create">+ Nouvelle take</a>
+        </div>
+        <div class="registre-search">
+          <input type="text" class="search-input" placeholder="Rechercher une take..." id="search-takes">
+          <div class="registre-filters">
+            <button class="filter-btn active" data-filter="all">Toutes</button>
+            <button class="filter-btn" data-filter="sealed">Scellées</button>
+            <button class="filter-btn" data-filter="resolving">En résolution</button>
+            <button class="filter-btn" data-filter="resolved">Résolues</button>
+            <button class="filter-btn" data-filter="draft">Brouillons</button>
+            <button class="filter-btn" data-filter="archived">Archivées</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="takes-list" id="takes-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
+          <div class="footer-links">
+            <a href="#manifesto" data-nav="manifesto">Manifeste</a>
+            <a href="https://github.com/chtabay/Stake" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ====== PAGE: TAKE DETAIL ====== -->
+  <div id="page-take" class="page">
+    <div class="container">
+      <div class="take-detail">
+        <div class="breadcrumb">
+          <a href="#registre" data-nav="registre">Registre</a>
+          <span class="breadcrumb-sep">/</span>
+          <span id="take-detail-breadcrumb">Take #001</span>
+        </div>
+
+        <div class="take-detail-header" id="take-detail-header">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="take-detail-grid">
+          <div class="take-detail-main" id="take-detail-main">
+            <!-- Populated by JS -->
+          </div>
+          <div class="take-sidebar" id="take-detail-sidebar">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
+          <div class="footer-links">
+            <a href="#manifesto" data-nav="manifesto">Manifeste</a>
+            <a href="https://github.com/chtabay/Stake" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ====== PAGE: CREATE ====== -->
+  <div id="page-create" class="page">
+    <div class="container-narrow">
+      <div class="create-page">
+        <div class="create-header">
+          <h1>Déposer une take</h1>
+          <p>Formulez une hypothèse falsifiable, définissez les conditions de résolution et engagez publiquement.</p>
+        </div>
+
+        <div class="progress-steps">
+          <div class="progress-step completed">
+            <div class="progress-step-dot">&#10003;</div>
+            <span class="progress-step-label">Affirmation</span>
+          </div>
+          <div class="progress-step active">
+            <div class="progress-step-dot">2</div>
+            <span class="progress-step-label">Protocole</span>
+          </div>
+          <div class="progress-step">
+            <div class="progress-step-dot">3</div>
+            <span class="progress-step-label">Engagement</span>
+          </div>
+          <div class="progress-step">
+            <div class="progress-step-dot">4</div>
+            <span class="progress-step-label">Validation</span>
+          </div>
+        </div>
+
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label class="form-label">
+              Titre de la take
+              <span class="form-label-hint">— Une affirmation claire et falsifiable</span>
+            </label>
+            <input type="text" class="form-input" placeholder="Ex: Le taux directeur de la BCE sera inférieur à 2% au 31 décembre 2027" value="Le taux directeur de la BCE sera inférieur à 2% au 31 décembre 2027">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description détaillée</label>
+            <textarea class="form-textarea" placeholder="Contexte, justification et détails de votre hypothèse...">Face à la tendance déflationniste persistante en zone euro et au ralentissement économique global, la BCE sera contrainte de maintenir une politique monétaire accommodante, ramenant son taux directeur principal sous la barre des 2% avant la fin 2027.</textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Échéance</label>
+              <input type="date" class="form-input" value="2027-12-31">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Catégorie</label>
+              <select class="form-select">
+                <option>Économie & Finance</option>
+                <option>Politique</option>
+                <option>Technologie</option>
+                <option>Science</option>
+                <option>Société</option>
+                <option>Sport</option>
+                <option>Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-divider">Protocole de résolution</div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Type de résolution
+              <span class="form-label-hint">— Comment la take sera vérifiée</span>
+            </label>
+            <select class="form-select">
+              <option>Donnée publique / API officielle</option>
+              <option>Résultat électoral</option>
+              <option>Statistique officielle</option>
+              <option>Cours financier</option>
+              <option>Audit externe</option>
+              <option>Constat d'huissier</option>
+              <option>Protocole personnalisé</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Source de vérification</label>
+            <input type="text" class="form-input" placeholder="Ex: Taux de refinancement principal publié par la BCE" value="Taux de refinancement principal — publication officielle BCE (ecb.europa.eu)">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Critères de réussite</label>
+            <textarea class="form-textarea" rows="3" placeholder="Conditions exactes pour que la take soit considérée comme réussie...">Le taux de refinancement principal de la BCE, tel que publié sur ecb.europa.eu, doit être strictement inférieur à 2.00% à la date du 31 décembre 2027 (dernière décision applicable).</textarea>
+          </div>
+
+          <div class="form-divider">Engagement économique</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Montant engagé (€)</label>
+              <input type="number" class="form-input" placeholder="0" value="500">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Cause bénéficiaire en cas d'échec</label>
+              <select class="form-select">
+                <option>Fonds pour la recherche scientifique</option>
+                <option>Éducation financière publique</option>
+                <option>Lutte contre la désinformation</option>
+                <option>Action climatique</option>
+                <option>Aide humanitaire</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-secondary" onclick="showToast('Brouillon sauvegardé')">Sauvegarder en brouillon</button>
+            <button class="btn btn-primary" onclick="showToast('Take soumise à validation — vous serez notifié')">Soumettre à validation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container-narrow">
+        <div class="footer-inner">
+          <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
+          <div class="footer-links">
+            <a href="#manifesto" data-nav="manifesto">Manifeste</a>
+            <a href="https://github.com/chtabay/Stake" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ====== PAGE: MANIFESTO ====== -->
+  <div id="page-manifesto" class="page">
+    <div class="container-narrow">
+      <div class="manifesto">
+        <h1>Manifeste</h1>
+        <p class="manifesto-subtitle">Pourquoi ce projet existe, ce qu'il cherche à accomplir, et ce qu'il refuse d'être.</p>
+
+        <div class="manifesto-block">
+          <h2>Le problème</h2>
+          <p>La plupart des opinions publiques n'ont aucun coût, aucune traçabilité, aucune obligation de cohérence, aucune condition explicite de falsification.</p>
+          <p>Une affirmation peut être lancée le matin, oubliée le soir, et contredite le lendemain — sans que personne ne le remarque, sans que personne n'en supporte les conséquences.</p>
+          <blockquote>Le débat public fonctionne comme un flux sans mémoire, où la conviction la plus bruyante l'emporte sur la plus rigoureuse.</blockquote>
+        </div>
+
+        <div class="manifesto-block">
+          <h2>La proposition</h2>
+          <p>Stake propose une infrastructure permettant de transformer une opinion en engagement vérifiable :</p>
+          <ul>
+            <li>Déposer une take — une affirmation claire et falsifiable</li>
+            <li>Définir les conditions de résolution — protocole, preuves, échéance</li>
+            <li>Associer des preuves et des méthodes de vérification</li>
+            <li>Engager publiquement une somme — un coût de conviction</li>
+            <li>Organiser les conséquences prévues — en cas de réussite ou d'échec</li>
+          </ul>
+        </div>
+
+        <div class="manifesto-block">
+          <h2>Ce que nous valorisons</h2>
+          <ul>
+            <li>La cohérence dans le temps</li>
+            <li>La précision des hypothèses</li>
+            <li>La responsabilité intellectuelle</li>
+            <li>La capacité à assumer ses prédictions</li>
+            <li>Le débat centré sur les preuves, pas sur les intentions</li>
+          </ul>
+        </div>
+
+        <div class="manifesto-block">
+          <h2>Ce que nous refusons</h2>
+          <ul>
+            <li>Le clash et le sensationnalisme</li>
+            <li>Le hot take sans conséquence</li>
+            <li>La viralité émotionnelle</li>
+            <li>Les mécaniques de feed et de dopamine sociale</li>
+            <li>Les dynamiques assimilables au gambling ou à la spéculation</li>
+          </ul>
+        </div>
+
+        <div class="manifesto-block">
+          <h2>Ce que Stake n'est pas</h2>
+          <p>Stake n'est pas un réseau social, pas un média, pas un forum, pas un marché prédictif classique, pas un système de paris.</p>
+          <p>Stake est une infrastructure. Un protocole. Un registre d'engagements. Une mémoire des hypothèses.</p>
+          <blockquote>Une opinion structurée, falsifiable et assumée publiquement possède plus de valeur qu'une réaction instantanée sans conséquence.</blockquote>
+        </div>
+
+        <div class="manifesto-block">
+          <h2>L'effet recherché</h2>
+          <p>Chaque take déposée devient :</p>
+          <ul>
+            <li>Une capsule temporelle</li>
+            <li>Une hypothèse exécutable</li>
+            <li>Un engagement documenté</li>
+            <li>Une trace durable</li>
+          </ul>
+          <blockquote>Une affirmation publique gagne en valeur lorsqu'elle accepte une méthode de vérification, un horizon temporel, un coût d'engagement, et une mémoire durable.</blockquote>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container-narrow">
+        <div class="footer-inner">
+          <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
+          <div class="footer-links">
+            <a href="#home" data-nav="home">Accueil</a>
+            <a href="https://github.com/chtabay/Stake" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
