@@ -323,6 +323,10 @@ function navigateTo(page, param) {
     renderTakeDetail(param);
   }
 
+  if (page === 'profil') {
+    renderProfileTakes();
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -353,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== RENDER TAKES LIST =====
 
-function renderTakesList(filter, searchQuery) {
+function renderTakesList(filter, searchQuery, sortBy) {
   const container = document.getElementById('takes-list');
   if (!container) return;
 
@@ -371,6 +375,19 @@ function renderTakesList(filter, searchQuery) {
       t.category.toLowerCase().includes(q) ||
       t.tags.some(tag => tag.toLowerCase().includes(q))
     );
+  }
+
+  if (sortBy === 'deadline') {
+    filtered = [...filtered].sort((a, b) => a.deadlineISO.localeCompare(b.deadlineISO));
+  } else if (sortBy === 'amount-desc') {
+    filtered = [...filtered].sort((a, b) => b.amountRaw - a.amountRaw);
+  } else if (sortBy === 'amount-asc') {
+    filtered = [...filtered].sort((a, b) => a.amountRaw - b.amountRaw);
+  }
+
+  const countEl = document.getElementById('registre-count');
+  if (countEl) {
+    countEl.textContent = `${filtered.length} take${filtered.length > 1 ? 's' : ''} trouvée${filtered.length > 1 ? 's' : ''}`;
   }
 
   if (filtered.length === 0) {
@@ -427,6 +444,17 @@ function renderTakeDetail(takeId) {
   document.getElementById('take-detail-breadcrumb').textContent = take.id;
 
   // Header
+  const sealStatuses = ['sealed', 'resolved', 'resolving'];
+  const sealHashHtml = sealStatuses.includes(take.status) ? `
+    <div class="seal-hash">
+      <div class="seal-icon">S</div>
+      <div class="seal-info">
+        <div class="seal-label">Sceau d'intégrité</div>
+        <div class="seal-value">sha256:${generateHash(take.id)}</div>
+      </div>
+    </div>
+  ` : '';
+
   document.getElementById('take-detail-header').innerHTML = `
     <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
       <span class="badge ${take.badgeClass}">${take.statusLabel}</span>
@@ -448,6 +476,7 @@ function renderTakeDetail(takeId) {
         Créée le ${take.createdAt}
       </span>
     </div>
+    ${sealHashHtml}
   `;
 
   // Main content
@@ -555,7 +584,8 @@ function initFilters() {
       btn.classList.add('active');
       const filter = btn.getAttribute('data-filter');
       const search = document.getElementById('search-takes')?.value || '';
-      renderTakesList(filter, search);
+      const sort = document.getElementById('sort-takes')?.value || 'recent';
+      renderTakesList(filter, search, sort);
     });
   });
 
@@ -563,7 +593,17 @@ function initFilters() {
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
-      renderTakesList(activeFilter, searchInput.value);
+      const sort = document.getElementById('sort-takes')?.value || 'recent';
+      renderTakesList(activeFilter, searchInput.value, sort);
+    });
+  }
+
+  const sortSelect = document.getElementById('sort-takes');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+      const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
+      const search = document.getElementById('search-takes')?.value || '';
+      renderTakesList(activeFilter, search, sortSelect.value);
     });
   }
 }
@@ -595,4 +635,180 @@ function toggleMobileNav() {
     nav.style.borderBottom = '1px solid var(--border)';
     nav.style.zIndex = '99';
   }
+}
+
+// ===== MULTI-STEP FORM =====
+
+function goToStep(step) {
+  document.querySelectorAll('.form-step-panel').forEach(panel => {
+    panel.classList.remove('active');
+  });
+
+  const targetPanel = document.querySelector(`.form-step-panel[data-step="${step}"]`);
+  if (targetPanel) {
+    targetPanel.classList.add('active');
+  }
+
+  document.querySelectorAll('.progress-steps .step').forEach(indicator => {
+    const indicatorStep = parseInt(indicator.getAttribute('data-step'));
+    indicator.classList.remove('active', 'completed');
+    if (indicatorStep < step) {
+      indicator.classList.add('completed');
+    } else if (indicatorStep === step) {
+      indicator.classList.add('active');
+    }
+  });
+
+  if (step === 4) {
+    renderSummary();
+  }
+}
+
+function renderSummary() {
+  const title = document.getElementById('take-title')?.value || '';
+  const desc = document.getElementById('take-desc')?.value || '';
+  const deadline = document.getElementById('take-deadline')?.value || '';
+  const category = document.getElementById('take-category')?.value || '';
+  const resolution = document.getElementById('take-resolution')?.value || '';
+  const source = document.getElementById('take-source')?.value || '';
+  const criteria = document.getElementById('take-criteria')?.value || '';
+  const amount = document.getElementById('take-amount')?.value || '';
+  const cause = document.getElementById('take-cause')?.value || '';
+
+  const summaryEl = document.getElementById('take-summary');
+  if (!summaryEl) return;
+
+  summaryEl.innerHTML = `
+    <div class="take-section">
+      <div class="take-section-title">Titre</div>
+      <p>${title || '<em>Non renseigné</em>'}</p>
+    </div>
+    <div class="take-section">
+      <div class="take-section-title">Description</div>
+      <p>${desc || '<em>Non renseigné</em>'}</p>
+    </div>
+    <div class="take-section">
+      <div class="take-section-title">Catégorie</div>
+      <p>${category || '<em>Non renseignée</em>'}</p>
+    </div>
+    <div class="take-section">
+      <div class="take-section-title">Échéance</div>
+      <p>${deadline || '<em>Non renseignée</em>'}</p>
+    </div>
+    <div class="take-section">
+      <div class="take-section-title">Protocole de résolution</div>
+      <p><strong>Type :</strong> ${resolution || '<em>Non renseigné</em>'}</p>
+      <p><strong>Source :</strong> ${source || '<em>Non renseignée</em>'}</p>
+      <p><strong>Critères :</strong> ${criteria || '<em>Non renseignés</em>'}</p>
+    </div>
+    <div class="take-section">
+      <div class="take-section-title">Engagement</div>
+      <p>${amount ? amount + ' €' : '<em>Non renseigné</em>'}</p>
+    </div>
+    <div class="take-section">
+      <div class="take-section-title">Cause soutenue</div>
+      <p>${cause || '<em>Non renseignée</em>'}</p>
+    </div>
+  `;
+}
+
+function submitTake() {
+  showConfirm(
+    'Soumettre cette take ?',
+    'Cette action soumettra votre take à validation. Une fois soumise, vous ne pourrez plus la modifier.',
+    () => {
+      showToast('Take soumise avec succès !');
+      goToStep(1);
+    }
+  );
+}
+
+// ===== CONFIRMATION DIALOG =====
+
+function showConfirm(title, message, onConfirm) {
+  const overlay = document.getElementById('confirm-overlay');
+  if (!overlay) return;
+
+  overlay.querySelector('.confirm-title').textContent = title;
+  overlay.querySelector('.confirm-message').textContent = message;
+
+  const confirmBtn = overlay.querySelector('.confirm-btn-yes');
+  confirmBtn.onclick = () => {
+    closeConfirm();
+    if (onConfirm) onConfirm();
+  };
+
+  overlay.classList.add('visible');
+}
+
+function closeConfirm() {
+  const overlay = document.getElementById('confirm-overlay');
+  if (overlay) {
+    overlay.classList.remove('visible');
+  }
+}
+
+// ===== PROFILE =====
+
+function renderProfileTakes() {
+  const container = document.getElementById('profile-takes-list');
+  if (!container) return;
+
+  const myTakes = TAKES.filter(t => t.author === 'M. Vauban');
+
+  if (myTakes.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">&#128220;</div>
+        <h3>Aucune take</h3>
+        <p>Vous n'avez pas encore créé de take.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = myTakes.map(take => `
+    <a class="take-card" href="#take/${take.id}" onclick="window.location.hash='take/${take.id}'">
+      <div class="take-card-body">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+          <span class="badge ${take.badgeClass}">${take.statusLabel}</span>
+          <span class="tag">${take.category}</span>
+        </div>
+        <h3>${take.title}</h3>
+        <div class="take-card-meta">
+          <span class="take-meta-item">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
+            ${take.deadline}
+          </span>
+        </div>
+      </div>
+      <div class="take-card-right">
+        <div>
+          <div class="take-amount">${take.amount}</div>
+          <div class="take-amount-label">engagé</div>
+        </div>
+      </div>
+    </a>
+  `).join('');
+}
+
+// ===== SEAL HASH HELPER =====
+
+function generateHash(id) {
+  const hashMap = {
+    'STK-001': 'a3f7b2c9d1e845f6907812ab3cd4ef56789a0b1c2d3e4f5a6b7c8d9e0f1a2b3c',
+    'STK-002': 'b4e8c3d0e2f956a7018923bc4de5fa67890b1c2d3e4f5a6b7c8d9e0f1a2b3c4d',
+    'STK-003': 'c5f9d4e1f3a067b8129a34cd5ef6ab78901c2d3e4f5a6b7c8d9e0f1a2b3c4d5e',
+    'STK-004': 'd6a0e5f2a4b178c923ab45de6fa7bc89012d3e4f5a6b7c8d9e0f1a2b3c4d5e6f',
+    'STK-005': 'e7b1f6a3b5c289d034bc56ef7ab8cd9a123e4f5a6b7c8d9e0f1a2b3c4d5e6f7a',
+    'STK-006': 'f8c2a7b4c6d39ae145cd67fa8bc9de0b234f5a6b7c8d9e0f1a2b3c4d5e6f7a8b',
+    'STK-007': '09d3b8c5d7e4abf256de78ab9cd0ef1c345a6b7c8d9e0f1a2b3c4d5e6f7a8b9c',
+    'STK-008': '1ae4c9d6e8f5bca367ef89bc0de1fa2d456b7c8d9e0f1a2b3c4d5e6f7a8b9c0d'
+  };
+  if (hashMap[id]) return hashMap[id];
+  let hash = '';
+  for (let i = 0; i < 64; i++) {
+    hash += ((id.charCodeAt(i % id.length) * (i + 7)) % 16).toString(16);
+  }
+  return hash;
 }

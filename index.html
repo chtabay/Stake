@@ -16,7 +16,7 @@
   <!-- ====== NAVBAR ====== -->
   <nav class="navbar">
     <div class="navbar-inner">
-      <a href="#home" class="navbar-brand">
+      <a href="#home" class="navbar-brand" aria-label="Stake - Accueil">
         <div class="navbar-logo">S</div>
         <span class="navbar-title">Stake</span>
       </a>
@@ -25,6 +25,7 @@
         <li><a href="#registre" data-nav="registre">Registre</a></li>
         <li><a href="#create" data-nav="create">Déposer</a></li>
         <li><a href="#manifesto" data-nav="manifesto">Manifeste</a></li>
+        <li><a href="#profil" data-nav="profil">Profil</a></li>
       </ul>
       <div class="navbar-actions">
         <a href="#create" class="btn btn-primary btn-sm" data-nav="create">Déposer une take</a>
@@ -35,7 +36,7 @@
   </nav>
 
   <!-- ====== PAGE: HOME ====== -->
-  <div id="page-home" class="page active">
+  <main id="page-home" class="page active" role="main">
 
     <!-- Hero -->
     <section class="hero">
@@ -179,10 +180,10 @@
         </div>
       </div>
     </footer>
-  </div>
+  </main>
 
   <!-- ====== PAGE: REGISTRE ====== -->
-  <div id="page-registre" class="page">
+  <main id="page-registre" class="page" role="main">
     <div class="container">
       <div class="registre-header">
         <div class="registre-title-row">
@@ -190,15 +191,28 @@
           <a href="#create" class="btn btn-primary btn-sm" data-nav="create">+ Nouvelle take</a>
         </div>
         <div class="registre-search">
-          <input type="text" class="search-input" placeholder="Rechercher une take..." id="search-takes">
+          <input type="text" class="search-input" placeholder="Rechercher une take..." id="search-takes" aria-label="Rechercher dans le registre">
           <div class="registre-filters">
-            <button class="filter-btn active" data-filter="all">Toutes</button>
-            <button class="filter-btn" data-filter="sealed">Scellées</button>
-            <button class="filter-btn" data-filter="resolving">En résolution</button>
-            <button class="filter-btn" data-filter="resolved">Résolues</button>
-            <button class="filter-btn" data-filter="draft">Brouillons</button>
-            <button class="filter-btn" data-filter="archived">Archivées</button>
+            <button class="filter-btn active" data-filter="all" aria-label="Toutes">Toutes</button>
+            <button class="filter-btn" data-filter="sealed" aria-label="Scellées">Scellées</button>
+            <button class="filter-btn" data-filter="resolving" aria-label="En résolution">En résolution</button>
+            <button class="filter-btn" data-filter="resolved" aria-label="Résolues">Résolues</button>
+            <button class="filter-btn" data-filter="draft" aria-label="Brouillons">Brouillons</button>
+            <button class="filter-btn" data-filter="archived" aria-label="Archivées">Archivées</button>
           </div>
+        </div>
+      </div>
+
+      <div class="registre-toolbar">
+        <span class="registre-count" id="registre-count">8 takes</span>
+        <div class="registre-sort">
+          <label for="sort-takes">Trier par</label>
+          <select class="sort-select" id="sort-takes">
+            <option value="recent">Plus récentes</option>
+            <option value="deadline">Échéance</option>
+            <option value="amount-desc">Montant (décroissant)</option>
+            <option value="amount-asc">Montant (croissant)</option>
+          </select>
         </div>
       </div>
 
@@ -218,10 +232,10 @@
         </div>
       </div>
     </footer>
-  </div>
+  </main>
 
   <!-- ====== PAGE: TAKE DETAIL ====== -->
-  <div id="page-take" class="page">
+  <main id="page-take" class="page" role="main">
     <div class="container">
       <div class="take-detail">
         <div class="breadcrumb">
@@ -256,10 +270,10 @@
         </div>
       </div>
     </footer>
-  </div>
+  </main>
 
   <!-- ====== PAGE: CREATE ====== -->
-  <div id="page-create" class="page">
+  <main id="page-create" class="page" role="main">
     <div class="container-narrow">
       <div class="create-page">
         <div class="create-header">
@@ -286,89 +300,124 @@
           </div>
         </div>
 
-        <form onsubmit="return false;">
-          <div class="form-group">
-            <label class="form-label">
-              Titre de la take
-              <span class="form-label-hint">— Une affirmation claire et falsifiable</span>
-            </label>
-            <input type="text" class="form-input" placeholder="Ex: Le taux directeur de la BCE sera inférieur à 2% au 31 décembre 2027" value="Le taux directeur de la BCE sera inférieur à 2% au 31 décembre 2027">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Description détaillée</label>
-            <textarea class="form-textarea" placeholder="Contexte, justification et détails de votre hypothèse...">Face à la tendance déflationniste persistante en zone euro et au ralentissement économique global, la BCE sera contrainte de maintenir une politique monétaire accommodante, ramenant son taux directeur principal sous la barre des 2% avant la fin 2027.</textarea>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Échéance</label>
-              <input type="date" class="form-input" value="2027-12-31">
+        <form onsubmit="return false;" id="create-form">
+          <div class="form-step-panel active" data-step="1">
+            <div class="form-completeness">
+              <span class="form-completeness-dot incomplete"></span>
+              Étape 1 sur 4 — Définissez votre affirmation
             </div>
             <div class="form-group">
-              <label class="form-label">Catégorie</label>
-              <select class="form-select">
-                <option>Économie & Finance</option>
-                <option>Politique</option>
-                <option>Technologie</option>
-                <option>Science</option>
-                <option>Société</option>
-                <option>Sport</option>
-                <option>Autre</option>
+              <label class="form-label">
+                Titre de la take
+                <span class="form-label-hint">— Une affirmation claire et falsifiable</span>
+              </label>
+              <input type="text" class="form-input" id="take-title" placeholder="Ex: Le taux directeur de la BCE sera inférieur à 2% au 31 décembre 2027">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description détaillée</label>
+              <textarea class="form-textarea" id="take-desc" placeholder="Contexte, justification et détails de votre hypothèse..."></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Échéance</label>
+                <input type="date" class="form-input" id="take-deadline">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Catégorie</label>
+                <select class="form-select" id="take-category">
+                  <option value="">Choisir une catégorie</option>
+                  <option>Économie &amp; Finance</option>
+                  <option>Politique</option>
+                  <option>Technologie</option>
+                  <option>Science</option>
+                  <option>Société</option>
+                  <option>Sport</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-step-nav">
+              <div></div>
+              <button type="button" class="btn btn-primary" onclick="goToStep(2)">Continuer vers le protocole</button>
+            </div>
+          </div>
+
+          <div class="form-step-panel" data-step="2">
+            <div class="form-completeness">
+              <span class="form-completeness-dot incomplete"></span>
+              Étape 2 sur 4 — Définissez le protocole de résolution
+            </div>
+            <div class="form-group">
+              <label class="form-label">
+                Type de résolution
+                <span class="form-label-hint">— Comment la take sera vérifiée</span>
+              </label>
+              <select class="form-select" id="take-resolution">
+                <option value="">Choisir un type</option>
+                <option>Donnée publique / API officielle</option>
+                <option>Résultat électoral</option>
+                <option>Statistique officielle</option>
+                <option>Cours financier</option>
+                <option>Audit externe</option>
+                <option>Constat d'huissier</option>
+                <option>Protocole personnalisé</option>
               </select>
             </div>
-          </div>
-
-          <div class="form-divider">Protocole de résolution</div>
-
-          <div class="form-group">
-            <label class="form-label">
-              Type de résolution
-              <span class="form-label-hint">— Comment la take sera vérifiée</span>
-            </label>
-            <select class="form-select">
-              <option>Donnée publique / API officielle</option>
-              <option>Résultat électoral</option>
-              <option>Statistique officielle</option>
-              <option>Cours financier</option>
-              <option>Audit externe</option>
-              <option>Constat d'huissier</option>
-              <option>Protocole personnalisé</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Source de vérification</label>
-            <input type="text" class="form-input" placeholder="Ex: Taux de refinancement principal publié par la BCE" value="Taux de refinancement principal — publication officielle BCE (ecb.europa.eu)">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Critères de réussite</label>
-            <textarea class="form-textarea" rows="3" placeholder="Conditions exactes pour que la take soit considérée comme réussie...">Le taux de refinancement principal de la BCE, tel que publié sur ecb.europa.eu, doit être strictement inférieur à 2.00% à la date du 31 décembre 2027 (dernière décision applicable).</textarea>
-          </div>
-
-          <div class="form-divider">Engagement économique</div>
-
-          <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Montant engagé (€)</label>
-              <input type="number" class="form-input" placeholder="0" value="500">
+              <label class="form-label">Source de vérification</label>
+              <input type="text" class="form-input" id="take-source" placeholder="Ex: Taux de refinancement principal publié par la BCE">
             </div>
             <div class="form-group">
-              <label class="form-label">Cause bénéficiaire en cas d'échec</label>
-              <select class="form-select">
-                <option>Fonds pour la recherche scientifique</option>
-                <option>Éducation financière publique</option>
-                <option>Lutte contre la désinformation</option>
-                <option>Action climatique</option>
-                <option>Aide humanitaire</option>
-              </select>
+              <label class="form-label">Critères de réussite</label>
+              <textarea class="form-textarea" id="take-criteria" rows="3" placeholder="Conditions exactes pour que la take soit considérée comme réussie..."></textarea>
+            </div>
+            <div class="form-step-nav">
+              <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Retour</button>
+              <button type="button" class="btn btn-primary" onclick="goToStep(3)">Continuer vers l'engagement</button>
             </div>
           </div>
 
-          <div class="form-actions">
-            <button class="btn btn-secondary" onclick="showToast('Brouillon sauvegardé')">Sauvegarder en brouillon</button>
-            <button class="btn btn-primary" onclick="showToast('Take soumise à validation — vous serez notifié')">Soumettre à validation</button>
+          <div class="form-step-panel" data-step="3">
+            <div class="form-completeness">
+              <span class="form-completeness-dot incomplete"></span>
+              Étape 3 sur 4 — Engagez votre conviction
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Montant engagé (€)</label>
+                <input type="number" class="form-input" id="take-amount" placeholder="0" min="10" max="10000">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Cause bénéficiaire en cas d'échec</label>
+                <select class="form-select" id="take-cause">
+                  <option value="">Choisir une cause</option>
+                  <option>Fonds pour la recherche scientifique</option>
+                  <option>Éducation financière publique</option>
+                  <option>Lutte contre la désinformation</option>
+                  <option>Action climatique</option>
+                  <option>Aide humanitaire</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-step-nav">
+              <button type="button" class="btn btn-secondary" onclick="goToStep(2)">Retour</button>
+              <button type="button" class="btn btn-primary" onclick="goToStep(4)">Vérifier et soumettre</button>
+            </div>
+          </div>
+
+          <div class="form-step-panel" data-step="4">
+            <div class="form-completeness">
+              <span class="form-completeness-dot incomplete"></span>
+              Étape 4 sur 4 — Vérifiez avant soumission
+            </div>
+            <div id="take-summary" style="margin-bottom: 1.5rem;"></div>
+            <div class="form-step-nav">
+              <button type="button" class="btn btn-secondary" onclick="goToStep(3)">Retour</button>
+              <div style="display:flex;gap:0.75rem;">
+                <button type="button" class="btn btn-secondary" onclick="showToast('Brouillon sauvegardé')">Sauvegarder en brouillon</button>
+                <button type="button" class="btn btn-primary" onclick="submitTake()">Soumettre à validation</button>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -385,10 +434,10 @@
         </div>
       </div>
     </footer>
-  </div>
+  </main>
 
   <!-- ====== PAGE: MANIFESTO ====== -->
-  <div id="page-manifesto" class="page">
+  <main id="page-manifesto" class="page" role="main">
     <div class="container-narrow">
       <div class="manifesto">
         <h1>Manifeste</h1>
@@ -467,6 +516,109 @@
         </div>
       </div>
     </footer>
+  </main>
+
+  <!-- ====== PAGE: PROFIL ====== -->
+  <main id="page-profil" class="page" role="main">
+    <div class="container">
+      <div class="profile-header">
+        <div class="profile-avatar-lg">MV</div>
+        <div class="profile-info">
+          <h1>M. Vauban</h1>
+          <p>Membre depuis mars 2026 — Engagements documentés et vérifiables.</p>
+          <div class="profile-meta">
+            <span class="profile-meta-item">Inscrit le 10 mars 2026</span>
+            <span class="profile-meta-item">ID: USR-0042</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <div class="profile-stat-value">5</div>
+          <div class="profile-stat-label">Takes déposées</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">3</div>
+          <div class="profile-stat-label">Scellées</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">1</div>
+          <div class="profile-stat-label">Résolue</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">€4 700</div>
+          <div class="profile-stat-label">Total engagé</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">67%</div>
+          <div class="profile-stat-label">Taux de succès</div>
+        </div>
+      </div>
+
+      <h2 class="profile-section-title">Calibration</h2>
+      <div class="calibration-chart">
+        <div class="calibration-row">
+          <span class="calibration-label">Scellées</span>
+          <div class="calibration-bar-track">
+            <div class="calibration-bar-fill" style="width: 60%"></div>
+            <div class="calibration-bar-marker" style="left: 60%"></div>
+          </div>
+          <span class="calibration-value">3 / 5</span>
+        </div>
+        <div class="calibration-row">
+          <span class="calibration-label">Résolues</span>
+          <div class="calibration-bar-track">
+            <div class="calibration-bar-fill" style="width: 33%"></div>
+            <div class="calibration-bar-marker" style="left: 33%"></div>
+          </div>
+          <span class="calibration-value">1 / 3</span>
+        </div>
+        <div class="calibration-row">
+          <span class="calibration-label">Succès</span>
+          <div class="calibration-bar-track">
+            <div class="calibration-bar-fill" style="width: 67%"></div>
+            <div class="calibration-bar-marker" style="left: 67%"></div>
+          </div>
+          <span class="calibration-value">67%</span>
+        </div>
+        <div class="calibration-row">
+          <span class="calibration-label">Cohérence</span>
+          <div class="calibration-bar-track">
+            <div class="calibration-bar-fill" style="width: 80%; background: var(--green)"></div>
+          </div>
+          <span class="calibration-value">Bonne</span>
+        </div>
+      </div>
+
+      <h2 class="profile-section-title">Historique des engagements</h2>
+      <div class="takes-list" id="profile-takes-list">
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
+          <div class="footer-links">
+            <a href="#manifesto" data-nav="manifesto">Manifeste</a>
+            <a href="https://github.com/chtabay/Stake" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Confirm Dialog -->
+  <div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-dialog" role="dialog" aria-modal="true">
+      <h3 id="confirm-title">Confirmation</h3>
+      <p id="confirm-message">Êtes-vous sûr ?</p>
+      <div class="confirm-dialog-actions">
+        <button class="btn btn-secondary btn-sm" onclick="closeConfirm()">Annuler</button>
+        <button class="btn btn-primary btn-sm" id="confirm-action">Confirmer</button>
+      </div>
+    </div>
   </div>
 
   <!-- Toast -->
