@@ -212,6 +212,197 @@
       </div>
     </section>
 
+    <!-- Lifecycle -->
+    <section class="lifecycle-section">
+      <div class="container-narrow">
+        <div class="section-header">
+          <h2>[CYCLE DE VIE D'UNE TAKE]</h2>
+          <p>Une take traverse une suite d'états explicites. Chaque transition est horodatée, historisée et auditable.</p>
+        </div>
+
+        <div class="lifecycle-track">
+          <div class="lifecycle-stage" data-stage="draft">
+            <div class="lifecycle-stage-id">01</div>
+            <div class="lifecycle-stage-label">BROUILLON</div>
+            <div class="lifecycle-stage-desc">Rédaction libre. Aucune mise immobilisée. Modifications illimitées.</div>
+          </div>
+          <div class="lifecycle-arrow">›</div>
+          <div class="lifecycle-stage" data-stage="audit">
+            <div class="lifecycle-stage-id">02</div>
+            <div class="lifecycle-stage-label">AUDIT DE PROTOCOLE</div>
+            <div class="lifecycle-stage-desc">Audit algorithmique (+ comité humain si complexe). Vérification de robustesse.</div>
+          </div>
+          <div class="lifecycle-arrow">›</div>
+          <div class="lifecycle-stage" data-stage="negotiation">
+            <div class="lifecycle-stage-id">03</div>
+            <div class="lifecycle-stage-label">NÉGOCIATION</div>
+            <div class="lifecycle-stage-desc">Amendements possibles si un contradicteur se présente. Versions tracées.</div>
+          </div>
+          <div class="lifecycle-arrow">›</div>
+          <div class="lifecycle-stage" data-stage="sealed">
+            <div class="lifecycle-stage-id">04</div>
+            <div class="lifecycle-stage-label">SCELLÉE</div>
+            <div class="lifecycle-stage-desc">Sceau d'intégrité calculé. Fonds verrouillés. Contrat publié au registre.</div>
+          </div>
+          <div class="lifecycle-arrow">›</div>
+          <div class="lifecycle-stage" data-stage="resolving">
+            <div class="lifecycle-stage-id">05</div>
+            <div class="lifecycle-stage-label">EN RÉSOLUTION</div>
+            <div class="lifecycle-stage-desc">Échéance atteinte. Interrogation de l'Oracle. Capture de la preuve.</div>
+          </div>
+          <div class="lifecycle-arrow">›</div>
+          <div class="lifecycle-stage lifecycle-stage--terminal" data-stage="resolved">
+            <div class="lifecycle-stage-id">06</div>
+            <div class="lifecycle-stage-label">RÉSOLUE</div>
+            <div class="lifecycle-stage-desc">Issue déterminée. Restitution ou redistribution exécutée. Contrat archivé.</div>
+          </div>
+        </div>
+
+        <div class="lifecycle-secondary">
+          <div class="lifecycle-secondary-title">[ÉTATS NON LINÉAIRES]</div>
+          <div class="lifecycle-secondary-grid">
+            <div class="lifecycle-secondary-item">
+              <div class="lifecycle-secondary-label">SUSPENDUE</div>
+              <p>Take temporairement gelée. Anomalie détectée pendant la phase de résolution ou contestation acceptée. Décision motivée et historisée.</p>
+            </div>
+            <div class="lifecycle-secondary-item">
+              <div class="lifecycle-secondary-label">INVALIDÉE</div>
+              <p>Take refusée à l'audit ou rendue inexploitable (Oracle disparu, critère devenu impossible à mesurer). Les fonds sont restitués.</p>
+            </div>
+            <div class="lifecycle-secondary-item">
+              <div class="lifecycle-secondary-label">ARCHIVÉE</div>
+              <p>Take résolue depuis une période définie. Reste consultable indéfiniment dans le registre public. Stockage long terme.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resolution types -->
+    <section class="resolution-types">
+      <div class="container-narrow">
+        <div class="section-header">
+          <h2>[TYPES D'ORACLES SUPPORTÉS]</h2>
+          <p>Tous les modes de résolution acceptés. L'Oracle est défini dans le protocole de la take dès sa création.</p>
+        </div>
+
+        <div class="resolution-grid">
+          <div class="resolution-card">
+            <div class="resolution-card-tag">AUTOMATIQUE</div>
+            <h3>API officielle</h3>
+            <p>Données publiques exposées par une autorité statistique, une banque centrale ou une bourse. La réponse est interrogée à l'échéance puis horodatée.</p>
+            <ul class="resolution-examples">
+              <li>BCE — Statistical Data Warehouse</li>
+              <li>INSEE — Banque de Données Macro-économiques</li>
+              <li>Binance / Coinbase — séries OHLCV horodatées</li>
+              <li>Ministère de l'Intérieur — résultats électoraux officiels</li>
+            </ul>
+          </div>
+
+          <div class="resolution-card">
+            <div class="resolution-card-tag">AUTOMATIQUE</div>
+            <h3>Indice ou statistique</h3>
+            <p>Une publication institutionnelle datée. La date de publication officielle fait foi, pas la date de l'événement observé.</p>
+            <ul class="resolution-examples">
+              <li>Indices IPC, CPI, taux directeur</li>
+              <li>Données d'emploi BIT, Eurostat</li>
+              <li>Rapports GIEC, ONU</li>
+            </ul>
+          </div>
+
+          <div class="resolution-card">
+            <div class="resolution-card-tag">DOCUMENTAIRE</div>
+            <h3>Constat d'huissier</h3>
+            <p>Acte authentique d'un officier ministériel constatant un fait à une date donnée. Référence légale en cas d'absence d'API.</p>
+            <ul class="resolution-examples">
+              <li>Vérification d'affichage, de propos publics, de présence</li>
+              <li>Constat d'état de lieux, d'un document, d'un site web</li>
+            </ul>
+          </div>
+
+          <div class="resolution-card">
+            <div class="resolution-card-tag">DOCUMENTAIRE</div>
+            <h3>Preuve notariale</h3>
+            <p>Document horodaté et déposé chez un notaire. Convient aux engagements personnels, actes patrimoniaux ou décisions familiales.</p>
+            <ul class="resolution-examples">
+              <li>Dépôt de scellement</li>
+              <li>Acte authentique daté</li>
+              <li>Attestation de séquestre</li>
+            </ul>
+          </div>
+
+          <div class="resolution-card">
+            <div class="resolution-card-tag">AUDIT</div>
+            <h3>Audit externe</h3>
+            <p>Rapport produit par un cabinet d'audit, expert-comptable, agence indépendante ou organisme certifié. Le périmètre et la méthode doivent être définis dès le scellement.</p>
+            <ul class="resolution-examples">
+              <li>Audit comptable, audit RGPD</li>
+              <li>Évaluation de performance technique</li>
+              <li>Mesure d'impact environnemental certifiée</li>
+            </ul>
+          </div>
+
+          <div class="resolution-card">
+            <div class="resolution-card-tag">COMPLEXE</div>
+            <h3>Arbitrage défini à l'avance</h3>
+            <p>Pour les protocoles multi-critères ou non automatisables, un panel d'arbitres est désigné <em>avant</em> le scellement. Leur identité, leur règle de décision et leur quorum font partie du contrat.</p>
+            <ul class="resolution-examples">
+              <li>Tribunal arbitral désigné par les parties</li>
+              <li>Comité d'experts sectoriels nommés</li>
+              <li>Médiation par tiers de confiance</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="resolution-note">// Quel que soit l'oracle, sa réponse est capturée, horodatée et archivée à côté du contrat scellé. L'audit IA n'intervient qu'avant scellement (sur la robustesse du protocole), jamais sur l'issue.</p>
+      </div>
+    </section>
+
+    <!-- Opportunity cost -->
+    <section class="opportunity-section">
+      <div class="container-narrow">
+        <div class="section-header">
+          <h2>[CE QUE STAKE N'EST PAS]</h2>
+          <p>Une démarcation explicite, par opposition aux objets financiers et ludiques qu'elle pourrait évoquer.</p>
+        </div>
+
+        <div class="opportunity-grid">
+          <div class="opportunity-row opportunity-row--negative">
+            <div class="opportunity-label">PAS UN PARI</div>
+            <div class="opportunity-text">Aucune mise n'est jamais reversée à l'autre partie. On ne peut pas gagner d'argent sur Stake — au mieux, on récupère sa mise.</div>
+          </div>
+          <div class="opportunity-row opportunity-row--negative">
+            <div class="opportunity-label">PAS UN MARCHÉ PRÉDICTIF</div>
+            <div class="opportunity-text">Aucune cotation, aucun spread, aucune liquidité de position. Une take ne se revend pas — l'engagement court jusqu'à l'échéance.</div>
+          </div>
+          <div class="opportunity-row opportunity-row--negative">
+            <div class="opportunity-label">PAS UN PRODUIT FINANCIER</div>
+            <div class="opportunity-text">Aucune promesse de rendement. La plateforme ne place pas vos fonds, ne les fait pas fructifier. Aucun intérêt n'est versé.</div>
+          </div>
+          <div class="opportunity-row opportunity-row--negative">
+            <div class="opportunity-label">PAS UN INSTRUMENT D'ÉPARGNE</div>
+            <div class="opportunity-text">Les fonds sont immobilisés sur une période définie. Pas de retrait anticipé, pas de capitalisation, pas de couverture mutualisée.</div>
+          </div>
+          <div class="opportunity-row opportunity-row--negative">
+            <div class="opportunity-label">PAS UN RÉSEAU SOCIAL</div>
+            <div class="opportunity-text">Aucun feed, aucun like, aucun classement de viralité. Une take est un document, pas un contenu à consommer.</div>
+          </div>
+        </div>
+
+        <div class="opportunity-bottom">
+          <h3>[LE COÛT D'OPPORTUNITÉ EST PART DU COÛT DE CONVICTION]</h3>
+          <p>L'argent immobilisé sur Stake ne rapporte rien. Vous renoncez à le placer ailleurs, à l'utiliser, à le faire fructifier. Cette renonciation — pas le risque de perte — est le véritable signal de conviction. C'est ce qui distingue une opinion structurée d'un simple commentaire.</p>
+          <ul class="opportunity-list">
+            <li>perte de liquidité jusqu'à l'échéance</li>
+            <li>renonciation à tout rendement alternatif</li>
+            <li>indisponibilité totale en cas d'imprévu</li>
+            <li>aucune compensation, ni assurance, ni filet</li>
+          </ul>
+          <p class="opportunity-footer">// Si l'argent ne vous coûte rien à immobiliser, votre conviction n'a pas de poids.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section">
       <div class="container">
@@ -559,9 +750,9 @@
         </div>
 
         <div class="manifesto-block">
-          <h2>[CE QUE STAKE N'EST PAS]</h2>
-          <p>Stake n'est pas un réseau social, pas un média, pas un forum, pas un marché prédictif classique, pas un système de paris.</p>
+          <h2>[STAKE COMME INFRASTRUCTURE]</h2>
           <p>Stake est une infrastructure. Un protocole. Un registre d'engagements. Une mémoire des hypothèses.</p>
+          <p>Ce n'est ni un réseau social, ni un média, ni un forum, ni un marché prédictif, ni un système de paris. Son rôle est strictement infrastructurel : héberger, sceller, archiver, résoudre.</p>
           <blockquote>Une opinion structurée, falsifiable et assumée publiquement possède plus de valeur qu'une réaction instantanée sans conséquence.</blockquote>
         </div>
 
