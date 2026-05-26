@@ -39,7 +39,7 @@ const TAKES = [
       { name: "Recherche économique", percent: 30 }
     ],
     parties: [
-      { name: "M. Vauban", initials: "MV", role: "Porteur", amount: "500 €" }
+      { name: "M. Vauban", initials: "MV", role: "Auteur", amount: "500 €" }
     ],
     challenger: null,
     timeline: [
@@ -87,13 +87,13 @@ const TAKES = [
       { name: "Recherche en IA", percent: 50 }
     ],
     parties: [
-      { name: "C. Turing", initials: "CT", role: "Porteur", amount: "1 200 €" },
-      { name: "A. Lovelace", initials: "AL", role: "Challenger", amount: "800 €" }
+      { name: "C. Turing", initials: "CT", role: "Auteur", amount: "1 200 €" },
+      { name: "A. Lovelace", initials: "AL", role: "Contradicteur", amount: "800 €" }
     ],
     challenger: { name: "A. Lovelace", initials: "AL", amount: "800 €" },
     timeline: [
       { date: "2 avril 2026", text: "Take créée en brouillon" },
-      { date: "5 avril 2026", text: "Challenger identifié" },
+      { date: "5 avril 2026", text: "Contradicteur engagé" },
       { date: "10 avril 2026", text: "Négociation en cours sur les critères" }
     ],
     tags: ["IA", "Services numériques", "France", "PIB"],
@@ -125,13 +125,13 @@ const TAKES = [
       { name: "Transparence démocratique", percent: 40 }
     ],
     parties: [
-      { name: "J. Madison", initials: "JM", role: "Porteur", amount: "2 000 €" },
-      { name: "T. Jefferson", initials: "TJ", role: "Challenger", amount: "2 000 €" }
+      { name: "J. Madison", initials: "JM", role: "Auteur", amount: "2 000 €" },
+      { name: "T. Jefferson", initials: "TJ", role: "Contradicteur", amount: "2 000 €" }
     ],
     challenger: { name: "T. Jefferson", initials: "TJ", amount: "2 000 €" },
     timeline: [
       { date: "10 jan. 2026", text: "Take créée" },
-      { date: "15 jan. 2026", text: "Challenger engagé" },
+      { date: "15 jan. 2026", text: "Contradicteur engagé" },
       { date: "20 jan. 2026", text: "Protocole accepté" },
       { date: "1 fév. 2026", text: "Scellée — fonds immobilisés" }
     ],
@@ -162,7 +162,7 @@ const TAKES = [
       { name: "Action climatique", percent: 100 }
     ],
     parties: [
-      { name: "E. Lavoisier", initials: "EL", role: "Porteur", amount: "750 €" }
+      { name: "E. Lavoisier", initials: "EL", role: "Auteur", amount: "750 €" }
     ],
     challenger: null,
     timeline: [
@@ -210,13 +210,13 @@ const TAKES = [
       { name: "Lutte contre les arnaques crypto", percent: 50 }
     ],
     parties: [
-      { name: "S. Nakamoto", initials: "SN", role: "Porteur", amount: "3 000 €" },
-      { name: "P. Krugman", initials: "PK", role: "Challenger", amount: "3 000 €" }
+      { name: "S. Nakamoto", initials: "SN", role: "Auteur", amount: "3 000 €" },
+      { name: "P. Krugman", initials: "PK", role: "Contradicteur", amount: "3 000 €" }
     ],
     challenger: { name: "P. Krugman", initials: "PK", amount: "3 000 €" },
     timeline: [
       { date: "20 fév. 2026", text: "Take créée" },
-      { date: "25 fév. 2026", text: "Challenger engagé" },
+      { date: "25 fév. 2026", text: "Contradicteur engagé" },
       { date: "1 mars 2026", text: "Protocole accepté et scellé" }
     ],
     tags: ["Bitcoin", "Crypto", "Cours", "ETF"],
@@ -246,7 +246,7 @@ const TAKES = [
       { name: "Aide humanitaire", percent: 100 }
     ],
     parties: [
-      { name: "T. Malthus", initials: "TM", role: "Porteur", amount: "200 €" }
+      { name: "T. Malthus", initials: "TM", role: "Auteur", amount: "200 €" }
     ],
     challenger: null,
     timeline: [
@@ -279,13 +279,13 @@ const TAKES = [
       { name: "Sport pour tous", percent: 100 }
     ],
     parties: [
-      { name: "R. Platini", initials: "RP", role: "Porteur", amount: "1 000 €" },
-      { name: "D. Beckham", initials: "DB", role: "Challenger", amount: "1 000 €" }
+      { name: "R. Platini", initials: "RP", role: "Auteur", amount: "1 000 €" },
+      { name: "D. Beckham", initials: "DB", role: "Contradicteur", amount: "1 000 €" }
     ],
     challenger: { name: "D. Beckham", initials: "DB", amount: "1 000 €" },
     timeline: [
       { date: "1 jan. 2026", text: "Take créée" },
-      { date: "5 jan. 2026", text: "Challenger engagé" },
+      { date: "5 jan. 2026", text: "Contradicteur engagé" },
       { date: "10 jan. 2026", text: "Scellée" },
       { date: "19 juil. 2026", text: "Résolution — En attente résultat final" }
     ],
@@ -316,7 +316,7 @@ const TAKES = [
       { name: "Recherche en IA ouverte", percent: 100 }
     ],
     parties: [
-      { name: "A. Turing", initials: "AT", role: "Porteur", amount: "800 €" }
+      { name: "A. Turing", initials: "AT", role: "Auteur", amount: "800 €" }
     ],
     challenger: null,
     timeline: [
@@ -456,7 +456,7 @@ function renderTakesList(filter, searchQuery, sortBy) {
           </span>
           ${take.challenger ? `
           <span class="take-meta-item">
-            [CHALLENGER]
+            [CONTRADICTEUR]
             ${take.challenger.name}
           </span>` : ''}
         </div>
@@ -606,7 +606,7 @@ function renderTakeDetail(takeId) {
         </div>
       </div>
       <div style="margin-top:1.25rem;display:flex;gap:0.5rem;">
-        <button class="btn btn-primary btn-sm" style="flex:1" onclick="window.location.hash='challenge/${take.id}'">Challenger cette take</button>
+        <button class="btn btn-primary btn-sm" style="flex:1" onclick="window.location.hash='challenge/${take.id}'">Contredire cette take</button>
       </div>
     </div>
 
@@ -637,7 +637,7 @@ function renderChallenge(takeId) {
     return;
   }
 
-  document.getElementById('challenge-title').innerHTML = `<strong>${take.author}</strong> vous défie sur cette hypothèse`;
+  document.getElementById('challenge-title').innerHTML = `<strong>${take.author}</strong> défend cette hypothèse — vous endossez le rôle de contradicteur`;
   
   const challengerAmount = take.challenger ? take.challenger.amount : take.amount;
 
@@ -684,10 +684,10 @@ function renderChallenge(takeId) {
 
 function acceptChallenge() {
   showConfirm(
-    'Accepter le défi ?',
+    'Confirmer la contradiction ?',
     'En acceptant, vous vous engagez formellement sur ce protocole. Vos fonds seront immobilisés jusqu\'à la résolution.',
     () => {
-      showToast('Défi accepté ! Redirection vers le registre...');
+      showToast('Contradiction enregistrée. Redirection vers le registre...');
       setTimeout(() => {
         window.location.hash = 'registre';
       }, 1500);

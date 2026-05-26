@@ -326,6 +326,86 @@ body {
   flex-wrap: wrap;
 }
 
+.hero-roles {
+  margin-top: 4rem;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  max-width: 720px;
+}
+
+.hero-roles-header {
+  padding: 0.65rem 1rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+.hero-roles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hero-role {
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.hero-role + .hero-role {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.hero-role-label {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-role-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.hero-role-list li {
+  padding: 0.2rem 0;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.hero-role-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+.hero-roles-footer {
+  padding: 0.65rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+@media (max-width: 600px) {
+  .hero-roles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-role + .hero-role {
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+  }
+}
+
 /* ===== SECTION HEADERS ===== */
 .section-header {
   margin-bottom: 3rem;

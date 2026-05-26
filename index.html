@@ -59,7 +59,7 @@
         <h1>Le coût d'avoir <em>tort</em></h1>
         <p class="hero-subtitle">
           Déposez une hypothèse falsifiable. Engagez une mise publique.
-          Si vous avez raison, elle vous est restituée. Si vous avez tort, elle est définitivement reversée à des causes d'intérêt général — jamais à l'adversaire.
+          Si vous avez raison, elle vous est restituée. Si vous avez tort, elle est définitivement reversée à des causes d'intérêt général — jamais à l'autre partie.
         </p>
         <div class="hero-mechanism">
           <div class="hero-mechanism-row">
@@ -75,12 +75,35 @@
           <div class="hero-mechanism-row">
             <span class="hero-mechanism-key">JAMAIS</span>
             <span class="hero-mechanism-arrow">→</span>
-            <span class="hero-mechanism-value">reversée à l'adversaire</span>
+            <span class="hero-mechanism-value">reversée à l'autre partie</span>
           </div>
         </div>
         <div class="hero-actions">
           <a href="#create" class="btn btn-primary btn-lg" data-nav="create">Déposer une take</a>
           <a href="#registre" class="btn btn-secondary btn-lg" data-nav="registre">Explorer le registre</a>
+        </div>
+
+        <div class="hero-roles">
+          <div class="hero-roles-header">[DEUX_RÔLES_SYMÉTRIQUES]</div>
+          <div class="hero-roles-grid">
+            <div class="hero-role">
+              <div class="hero-role-label">AUTEUR</div>
+              <ul class="hero-role-list">
+                <li>énonce l'affirmation</li>
+                <li>propose le protocole de résolution</li>
+                <li>immobilise sa mise</li>
+              </ul>
+            </div>
+            <div class="hero-role">
+              <div class="hero-role-label">CONTRADICTEUR</div>
+              <ul class="hero-role-list">
+                <li>conteste l'affirmation</li>
+                <li>amende ou accepte le protocole</li>
+                <li>immobilise sa mise</li>
+              </ul>
+            </div>
+          </div>
+          <div class="hero-roles-footer">// rôles symétriques · mêmes droits sur le protocole · même exposition financière</div>
         </div>
       </div>
     </section>
@@ -138,7 +161,7 @@
           <div class="principle-card">
             <div class="principle-icon">[05_FRICTION]</div>
             <h3>Coût de Conviction</h3>
-            <p>Chaque partie immobilise sa propre mise. Avoir raison la restitue. Avoir tort l'efface : les fonds sont reversés à des causes d'intérêt général, jamais à l'adversaire. Ce n'est pas un pari, c'est un coût d'engagement.</p>
+            <p>Chaque partie immobilise sa propre mise. Avoir raison la restitue. Avoir tort l'efface : les fonds sont reversés à des causes d'intérêt général, jamais à l'autre partie. Ce n'est pas un pari, c'est un coût d'engagement.</p>
           </div>
           <div class="principle-card">
             <div class="principle-icon">[06_ARCHIVE]</div>
@@ -168,7 +191,7 @@
             <div class="step-number">PHASE_02</div>
             <div>
               <h3>Audit & Négociation</h3>
-              <p>Le protocole est soumis à un audit algorithmique qui valide la fiabilité de la source et l'absence d'ambiguïté des critères. Les parties (Porteur et Challenger) peuvent amender ce contrat jusqu'à obtenir un consensus parfait.</p>
+              <p>Le protocole est soumis à un audit algorithmique qui valide la fiabilité de la source et l'absence d'ambiguïté des critères. Les parties (Auteur et Contradicteur) peuvent amender ce contrat jusqu'à obtenir un consensus parfait.</p>
             </div>
           </div>
           <div class="step">
@@ -182,7 +205,7 @@
             <div class="step-number">PHASE_04</div>
             <div>
               <h3>Résolution & Redistribution</h3>
-              <p>À l'échéance, l'Oracle est interrogé. La résolution est déterministe : chaque partie qui a raison récupère sa mise, chaque partie qui a tort la perd. Les fonds perdus ne sont jamais reversés à l'autre partie — ils sont redistribués à des causes d'intérêt général validées par la plateforme. Stake n'est pas un système de paris.</p>
+              <p>À l'échéance, l'Oracle est interrogé. La résolution est déterministe : chaque partie qui a raison récupère sa mise, chaque partie qui a tort la perd. Les fonds perdus ne sont jamais reversés à l'autre partie — ils sont redistribués à des causes d'intérêt général validées par la plateforme. Stake n'est ni un pari, ni un marché prédictif.</p>
             </div>
           </div>
         </div>
@@ -501,7 +524,7 @@
             <li>Définir les conditions de résolution — protocole, preuves, échéance</li>
             <li>Associer des preuves et des méthodes de vérification (Oracles)</li>
             <li>Engager publiquement une somme — un coût de conviction</li>
-            <li>Assumer le risque financier — l'argent est rendu si l'affirmation est vraie, définitivement perdu si elle est fausse, et reversé à des causes d'intérêt général (jamais à l'adversaire)</li>
+            <li>Assumer le risque financier — l'argent est rendu si l'affirmation est vraie, définitivement perdu si elle est fausse, et reversé à des causes d'intérêt général (jamais à l'autre partie)</li>
           </ul>
         </div>
 
@@ -688,7 +711,7 @@
                 <div class="og-meta-value">31 déc. 2028</div>
               </div>
               <div class="og-meta-item">
-                <div class="og-meta-label">PORTEUR</div>
+                <div class="og-meta-label">AUTEUR</div>
                 <div class="og-meta-value">C. Turing</div>
               </div>
             </div>
@@ -708,9 +731,9 @@
     <div class="container-narrow">
       <div class="challenge-page">
         <div class="challenge-header">
-          <div class="challenge-eyebrow">DÉFI REÇU</div>
-          <h1 id="challenge-title">Un utilisateur vous défie sur cette hypothèse</h1>
-          <p id="challenge-subtitle" class="challenge-subtitle">Examinez le protocole avant de vous engager.</p>
+          <div class="challenge-eyebrow">CONTRADICTION EN PRÉPARATION</div>
+          <h1 id="challenge-title">Vous vous apprêtez à contredire cette hypothèse</h1>
+          <p id="challenge-subtitle" class="challenge-subtitle">Examinez le protocole de résolution avant d'engager votre mise. Une contradiction est un acte formel : elle vous engage au même titre que l'auteur, et vous expose au même risque financier.</p>
         </div>
 
         <div class="challenge-contract" id="challenge-contract">
@@ -721,7 +744,7 @@
           <div class="challenge-friction-warning">
             <div>
               <strong>[AVERTISSEMENT]</strong>
-              <p>L'acceptation est définitive. Vos fonds sont immobilisés jusqu'à la résolution. Si vous avez raison, votre mise vous est restituée. Si vous avez tort, elle est définitivement perdue et reversée aux causes d'intérêt général définies dans le protocole — jamais à l'adversaire. Stake n'est pas un système de paris.</p>
+              <p>L'acceptation est définitive. Vos fonds sont immobilisés jusqu'à la résolution. Si vous avez raison, votre mise vous est restituée. Si vous avez tort, elle est définitivement perdue et reversée aux causes d'intérêt général définies dans le protocole — jamais à l'auteur. Stake n'est pas un système de paris.</p>
             </div>
           </div>
           
