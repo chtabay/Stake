@@ -551,9 +551,10 @@ body {
 
 .registre-title-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 2rem;
+  gap: 1.5rem;
 }
 
 .registre-title-row h1 {
@@ -561,6 +562,15 @@ body {
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+.registre-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  max-width: 600px;
 }
 
 .registre-filters {
@@ -1151,6 +1161,114 @@ body {
 .create-header p {
   color: var(--text-secondary);
   font-size: 1.125rem;
+}
+
+.create-contract-summary {
+  border: 1px solid var(--border);
+  margin-bottom: 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.create-contract-summary-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  align-items: center;
+}
+
+.create-contract-summary-row:last-child {
+  border-bottom: none;
+}
+
+.create-contract-summary-key {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.create-contract-summary-value {
+  color: var(--text-secondary);
+}
+
+.form-checklist {
+  border: 1px dashed var(--border);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  background: var(--bg-elevated);
+}
+
+.form-checklist-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.form-checklist ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.form-checklist li {
+  padding: 0.35rem 0;
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.5;
+}
+
+.form-checklist li::before {
+  content: '?';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.form-step-intro {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  margin: 1.5rem 0 2rem;
+  line-height: 1.55;
+}
+
+.form-warning {
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  background: var(--bg-elevated);
+}
+
+.form-warning strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text);
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+
+.form-warning p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+  .create-contract-summary-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
 }
 
 .form-group {
@@ -2120,12 +2238,38 @@ body {
   margin-top: 0.5rem;
 }
 
+.profile-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0.5rem 0 0.75rem;
+  line-height: 1.5;
+}
+
+.profile-section-note {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  margin: -1rem 0 2rem;
+  line-height: 1.55;
+  max-width: 720px;
+}
+
 .profile-section-title {
-  font-family: var(--font-sans);
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   margin: 4rem 0 2rem;
-  letter-spacing: -0.01em;
+  color: var(--text);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-section-title:first-of-type {
+  margin-top: 2rem;
 }
 
 .calibration-chart {

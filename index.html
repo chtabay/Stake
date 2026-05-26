@@ -432,17 +432,20 @@
     <div class="container">
       <div class="registre-header">
         <div class="registre-title-row">
-          <h1>Registre des takes</h1>
+          <div>
+            <h1>Registre public</h1>
+            <p class="registre-subtitle">// archive non destructive des takes — chaque entrée est horodatée, scellée et consultable indéfiniment</p>
+          </div>
           <a href="#create" class="btn btn-primary btn-sm" data-nav="create">+ Nouvelle take</a>
         </div>
         <div class="registre-search">
-          <input type="text" class="search-input" placeholder="Rechercher une take..." id="search-takes" aria-label="Rechercher dans le registre">
-          <div class="registre-filters">
+          <input type="text" class="search-input" placeholder="Rechercher dans le registre..." id="search-takes" aria-label="Rechercher dans le registre">
+          <div class="registre-filters" aria-label="Filtre par état du cycle de vie">
             <button class="filter-btn active" data-filter="all" aria-label="Toutes">Toutes</button>
+            <button class="filter-btn" data-filter="draft" aria-label="En audit / négociation">En audit</button>
             <button class="filter-btn" data-filter="sealed" aria-label="Scellées">Scellées</button>
             <button class="filter-btn" data-filter="resolving" aria-label="En résolution">En résolution</button>
             <button class="filter-btn" data-filter="resolved" aria-label="Résolues">Résolues</button>
-            <button class="filter-btn" data-filter="draft" aria-label="Brouillons">Brouillons</button>
             <button class="filter-btn" data-filter="archived" aria-label="Archivées">Archivées</button>
           </div>
         </div>
@@ -523,7 +526,26 @@
       <div class="create-page">
         <div class="create-header">
           <h1>Déposer une take</h1>
-          <p>Formulez une hypothèse falsifiable, définissez les conditions de résolution et engagez publiquement.</p>
+          <p>Formulez une hypothèse falsifiable, définissez l'Oracle qui la résoudra, et engagez votre mise. En tant qu'auteur, la mise est obligatoire — c'est le coût de votre conviction.</p>
+        </div>
+
+        <div class="create-contract-summary">
+          <div class="create-contract-summary-row">
+            <span class="create-contract-summary-key">VOTRE RÔLE</span>
+            <span class="create-contract-summary-value">Auteur — vous portez l'affirmation</span>
+          </div>
+          <div class="create-contract-summary-row">
+            <span class="create-contract-summary-key">MISE</span>
+            <span class="create-contract-summary-value">Obligatoire, immobilisée jusqu'à l'échéance</span>
+          </div>
+          <div class="create-contract-summary-row">
+            <span class="create-contract-summary-key">CONTRADICTEUR</span>
+            <span class="create-contract-summary-value">Optionnel — la take peut rester unilatérale</span>
+          </div>
+          <div class="create-contract-summary-row">
+            <span class="create-contract-summary-key">VERDICT</span>
+            <span class="create-contract-summary-value">Oracle déterministe à l'échéance (pas une IA, pas un humain ad hoc)</span>
+          </div>
         </div>
 
         <div class="progress-steps">
@@ -537,11 +559,11 @@
           </div>
           <div class="progress-step">
             <div class="progress-step-dot">3</div>
-            <span class="progress-step-label">Engagement</span>
+            <span class="progress-step-label">Mise</span>
           </div>
           <div class="progress-step">
             <div class="progress-step-dot">4</div>
-            <span class="progress-step-label">Validation</span>
+            <span class="progress-step-label">Audit</span>
           </div>
         </div>
 
@@ -550,6 +572,14 @@
             <div class="form-completeness">
               <span class="form-completeness-dot incomplete"></span>
               Étape 1 sur 4 — Définissez votre affirmation
+            </div>
+            <div class="form-checklist">
+              <div class="form-checklist-title">[TEST DE FALSIFIABILITÉ]</div>
+              <ul>
+                <li>À l'échéance, la proposition peut-elle être strictement <strong>VRAIE</strong> ou <strong>FAUSSE</strong> ?</li>
+                <li>Une personne tierce, lisant uniquement l'affirmation, peut-elle vérifier l'issue sans interpréter ?</li>
+                <li>Toute formulation vague (« beaucoup », « bientôt », « globalement ») doit être éliminée.</li>
+              </ul>
             </div>
             <div class="form-group">
               <label class="form-label">
@@ -590,47 +620,66 @@
           <div class="form-step-panel" data-step="2">
             <div class="form-completeness">
               <span class="form-completeness-dot incomplete"></span>
-              Étape 2 sur 4 — Définissez le protocole de résolution
+              Étape 2 sur 4 — Définissez l'Oracle qui résoudra
             </div>
+            <p class="form-step-intro">// L'Oracle est la source de vérité interrogée à l'échéance. Sa nature détermine la résolution automatique ou nécessite la saisine d'un comité humain.</p>
             <div class="form-group">
               <label class="form-label">
-                Type de résolution
+                Type d'Oracle
                 <span class="form-label-hint">— Comment la take sera vérifiée</span>
               </label>
               <select class="form-select" id="take-resolution">
-                <option value="">Choisir un type</option>
-                <option>Donnée publique / API officielle</option>
-                <option>Résultat électoral</option>
-                <option>Statistique officielle</option>
-                <option>Cours financier</option>
-                <option>Audit externe</option>
-                <option>Constat d'huissier</option>
-                <option>Protocole personnalisé</option>
+                <option value="">Choisir un type d'oracle</option>
+                <optgroup label="AUTOMATIQUE (résolution déterministe)">
+                  <option>API officielle — Banque centrale / Statistiques</option>
+                  <option>API financière — Cours OHLCV horodaté</option>
+                  <option>Données électorales — Min. Intérieur</option>
+                  <option>Indice institutionnel publié</option>
+                </optgroup>
+                <optgroup label="DOCUMENTAIRE (capture horodatée)">
+                  <option>Constat d'huissier</option>
+                  <option>Acte ou preuve notariale</option>
+                </optgroup>
+                <optgroup label="COMPLEXE (saisine d'un comité)">
+                  <option>Audit externe certifié</option>
+                  <option>Arbitrage défini à l'avance</option>
+                  <option>Protocole multi-sources personnalisé</option>
+                </optgroup>
               </select>
+              <p class="form-help">Les protocoles complexes déclenchent une saisine du comité de validation humain en plus de l'audit algorithmique.</p>
             </div>
             <div class="form-group">
-              <label class="form-label">Source de vérification</label>
-              <input type="text" class="form-input" id="take-source" placeholder="Ex: Taux de refinancement principal publié par la BCE">
+              <label class="form-label">Source de vérification précise</label>
+              <input type="text" class="form-input" id="take-source" placeholder="Ex: BCE SDW · série MRR_RT.LEV · publication mensuelle">
+              <p class="form-help">Identifiant précis (série API, document, n° d'acte). Plus la source est nommée précisément, plus le protocole est solide.</p>
             </div>
             <div class="form-group">
-              <label class="form-label">Critères de réussite</label>
-              <textarea class="form-textarea" id="take-criteria" rows="3" placeholder="Conditions exactes pour que la take soit considérée comme réussie..."></textarea>
+              <label class="form-label">Critères de réussite exacts</label>
+              <textarea class="form-textarea" id="take-criteria" rows="3" placeholder="Ex: Valeur publiée de la série MRR_RT.LEV pour la période 2027-12 strictement inférieure à 2.0%"></textarea>
+              <p class="form-help">Conditions exactes, sans ambiguïté, comportant la métrique, le seuil et la période d'observation.</p>
             </div>
             <div class="form-step-nav">
               <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Retour</button>
-              <button type="button" class="btn btn-primary" onclick="goToStep(3)">Continuer vers l'engagement</button>
+              <button type="button" class="btn btn-primary" onclick="goToStep(3)">Continuer vers la mise</button>
             </div>
           </div>
 
           <div class="form-step-panel" data-step="3">
             <div class="form-completeness">
               <span class="form-completeness-dot incomplete"></span>
-              Étape 3 sur 4 — Engagez votre conviction
+              Étape 3 sur 4 — Engagez votre mise
             </div>
+
+            <div class="form-warning">
+              <strong>[MISE OBLIGATOIRE]</strong>
+              <p>En tant qu'auteur, vous devez immobiliser une mise. Si l'affirmation se vérifie à l'échéance, votre mise vous est restituée. Si elle est falsifiée, elle est définitivement perdue et reversée à la cause choisie — jamais à un éventuel contradicteur.</p>
+            </div>
+
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Montant engagé (€)</label>
+                <label class="form-label">Montant engagé (€) <span class="form-label-hint">— immobilisé jusqu'à l'échéance</span></label>
                 <input type="number" class="form-input" id="take-amount" placeholder="0" min="10" max="10000">
+                <p class="form-help">Aucun rendement n'est versé. L'immobilisation représente votre coût d'opportunité — c'est la véritable preuve de conviction.</p>
               </div>
               <div class="form-group">
                 <label class="form-label">Cause bénéficiaire en cas d'échec <span class="form-label-hint">— liste fermée, validée par la plateforme</span></label>
@@ -654,8 +703,9 @@
           <div class="form-step-panel" data-step="4">
             <div class="form-completeness">
               <span class="form-completeness-dot incomplete"></span>
-              Étape 4 sur 4 — Vérifiez avant soumission
+              Étape 4 sur 4 — Audit du protocole avant scellement
             </div>
+            <p class="form-step-intro">// L'audit vérifie la robustesse du contrat (source, métrique, falsifiabilité, échéance). Il ne juge jamais l'issue. Un comité humain est saisi en complément si l'oracle choisi est complexe.</p>
             <div id="take-summary" style="margin-bottom: 1.5rem;"></div>
             
             <div id="create-audit-container" style="display:none; margin-bottom: 2rem;">
@@ -672,8 +722,8 @@
             <div class="form-step-nav">
               <button type="button" class="btn btn-secondary" onclick="goToStep(3)">Retour</button>
               <div style="display:flex;gap:0.75rem;">
-                <button type="button" class="btn btn-secondary" onclick="runAuditSimulation()" id="btn-run-audit">Lancer l'audit</button>
-                <button type="button" class="btn btn-primary" onclick="submitTake()" id="btn-submit-take" style="display:none;">Soumettre à validation</button>
+                <button type="button" class="btn btn-secondary" onclick="runAuditSimulation()" id="btn-run-audit">Lancer l'audit du protocole</button>
+                <button type="button" class="btn btn-primary" onclick="submitTake()" id="btn-submit-take" style="display:none;">Sceller et publier au registre</button>
               </div>
             </div>
           </div>
@@ -728,6 +778,25 @@
         </div>
 
         <div class="manifesto-block">
+          <h2>[LES RÔLES & L'ASYMÉTRIE ASSUMÉE]</h2>
+          <p>Stake reconnaît deux rôles : <strong>l'Auteur</strong>, qui dépose la take, et <strong>le Contradicteur</strong>, qui peut la contester.</p>
+          <p>L'asymétrie est volontaire : l'auteur s'engage toujours financièrement (la mise est obligatoire), tandis que le contradicteur peut intervenir avec ou sans mise. Cette dissymétrie traduit un parti pris : <em>celui qui affirme doit payer le coût de son affirmation</em>, alors que celui qui doute peut le faire sans contrainte financière. La contestation purement intellectuelle reste légitime et utile.</p>
+          <p>Une take peut exister sans contradicteur — on parle alors de <strong>mode unilatéral</strong>. Dans ce cas, la validité du protocole repose uniquement sur l'audit algorithmique, complété d'un comité humain pour les cas complexes.</p>
+        </div>
+
+        <div class="manifesto-block">
+          <h2>[LA PLACE DE L'AUTOMATISATION]</h2>
+          <p>Un audit algorithmique vérifie systématiquement chaque protocole avant scellement. Cet audit ne juge jamais l'issue ; il vérifie uniquement la <em>robustesse</em> du contrat : fiabilité de la source, précision de la métrique, absence d'ambiguïté.</p>
+          <p>Pour les protocoles complexes (huissier, arbitrage, multi-sources), un comité de validation humain intervient en complément. La résolution finale, elle, n'appartient ni à l'IA ni à la plateforme : c'est <strong>l'Oracle défini dans le protocole</strong> qui tranche, à l'échéance. Une API, un document officiel, un arbitre désigné — mais jamais un acteur ad hoc.</p>
+        </div>
+
+        <div class="manifesto-block">
+          <h2>[LA GOUVERNANCE DES CAUSES]</h2>
+          <p>Les mises perdues sont reversées à des causes d'intérêt général. Ces causes sont sélectionnées par la plateforme dans une liste fermée et publique — l'auteur choisit la pondération, jamais la cause elle-même hors de cette liste.</p>
+          <p>Stake refuse les redistributions librement auto-dirigées. Affecter de l'argent à une cause revient indirectement à ne pas en financer d'autres : ce choix ne peut pas être abandonné à l'auteur seul. La gouvernance des causes constitue un sous-système à part entière de la plateforme, soumis à des règles explicites de neutralité, de transparence et de limitation des détournements idéologiques.</p>
+        </div>
+
+        <div class="manifesto-block">
           <h2>[CE QUE NOUS VALORISONS]</h2>
           <ul>
             <li>La cohérence dans le temps</li>
@@ -746,6 +815,9 @@
             <li>La viralité émotionnelle</li>
             <li>Les mécaniques de feed et de dopamine sociale</li>
             <li>Les dynamiques assimilables au gambling ou à la spéculation</li>
+            <li>Toute promesse de rendement financier — la plateforme ne place ni ne fait fructifier les fonds</li>
+            <li>Les redistributions librement auto-dirigées et tout usage assimilable à du blanchiment</li>
+            <li>L'idée d'une intelligence artificielle juge — l'IA audite, elle ne tranche pas</li>
           </ul>
         </div>
 
@@ -790,14 +862,16 @@
         <div class="profile-avatar-lg">MV</div>
         <div class="profile-info">
           <h1>M. Vauban</h1>
-          <p>Membre depuis mars 2026 — Engagements documentés et vérifiables.</p>
+          <p class="profile-tagline">// historique public et non destructif des engagements pris sous ce pseudonyme</p>
           <div class="profile-meta">
             <span class="profile-meta-item">Inscrit le 10 mars 2026</span>
             <span class="profile-meta-item">ID: USR-0042</span>
+            <span class="profile-meta-item">5 engagements publics</span>
           </div>
         </div>
       </div>
 
+      <h2 class="profile-section-title">[EN TANT QU'AUTEUR]</h2>
       <div class="profile-stats">
         <div class="profile-stat">
           <div class="profile-stat-value">5</div>
@@ -813,18 +887,43 @@
         </div>
         <div class="profile-stat">
           <div class="profile-stat-value">€4 700</div>
-          <div class="profile-stat-label">Total engagé</div>
+          <div class="profile-stat-label">Total mis</div>
         </div>
         <div class="profile-stat">
-          <div class="profile-stat-value">67%</div>
-          <div class="profile-stat-label">Taux de succès</div>
+          <div class="profile-stat-value">1 / 1</div>
+          <div class="profile-stat-label">Affirmations vérifiées</div>
         </div>
       </div>
 
-      <h2 class="profile-section-title">Calibration</h2>
+      <h2 class="profile-section-title">[EN TANT QUE CONTRADICTEUR]</h2>
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <div class="profile-stat-value">2</div>
+          <div class="profile-stat-label">Contradictions déposées</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">1</div>
+          <div class="profile-stat-label">Avec mise</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">1</div>
+          <div class="profile-stat-label">Sans mise (documentaire)</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">€800</div>
+          <div class="profile-stat-label">Total mis</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">—</div>
+          <div class="profile-stat-label">Affirmations contestées</div>
+        </div>
+      </div>
+
+      <h2 class="profile-section-title">[RIGUEUR ÉPISTÉMIQUE]</h2>
+      <p class="profile-section-note">// Ce ne sont pas des scores de paris. Ce sont des indicateurs de cohérence intellectuelle, calculés sur les engagements publics scellés.</p>
       <div class="calibration-chart">
         <div class="calibration-row">
-          <span class="calibration-label">Scellées</span>
+          <span class="calibration-label">Taux de scellement</span>
           <div class="calibration-bar-track">
             <div class="calibration-bar-fill" style="width: 60%"></div>
             <div class="calibration-bar-marker" style="left: 60%"></div>
@@ -832,7 +931,7 @@
           <span class="calibration-value">3 / 5</span>
         </div>
         <div class="calibration-row">
-          <span class="calibration-label">Résolues</span>
+          <span class="calibration-label">Taux de résolution</span>
           <div class="calibration-bar-track">
             <div class="calibration-bar-fill" style="width: 33%"></div>
             <div class="calibration-bar-marker" style="left: 33%"></div>
@@ -840,15 +939,14 @@
           <span class="calibration-value">1 / 3</span>
         </div>
         <div class="calibration-row">
-          <span class="calibration-label">Succès</span>
+          <span class="calibration-label">Précision des protocoles</span>
           <div class="calibration-bar-track">
-            <div class="calibration-bar-fill" style="width: 67%"></div>
-            <div class="calibration-bar-marker" style="left: 67%"></div>
+            <div class="calibration-bar-fill" style="width: 90%; background: var(--green)"></div>
           </div>
-          <span class="calibration-value">67%</span>
+          <span class="calibration-value">Excellente</span>
         </div>
         <div class="calibration-row">
-          <span class="calibration-label">Cohérence</span>
+          <span class="calibration-label">Cohérence dans le temps</span>
           <div class="calibration-bar-track">
             <div class="calibration-bar-fill" style="width: 80%; background: var(--green)"></div>
           </div>
