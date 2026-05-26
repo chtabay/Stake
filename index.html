@@ -425,11 +425,23 @@
               Étape 4 sur 4 — Vérifiez avant soumission
             </div>
             <div id="take-summary" style="margin-bottom: 1.5rem;"></div>
+            
+            <div id="create-audit-container" style="display:none; margin-bottom: 2rem;">
+              <div class="ai-audit-container">
+                <div class="ai-audit-header">
+                  <span>Audit du Protocole (IA)</span>
+                  <span class="ai-audit-status" id="create-audit-status">[EN COURS]</span>
+                </div>
+                <div class="ai-audit-log" id="create-audit-log">
+                </div>
+              </div>
+            </div>
+
             <div class="form-step-nav">
               <button type="button" class="btn btn-secondary" onclick="goToStep(3)">Retour</button>
               <div style="display:flex;gap:0.75rem;">
-                <button type="button" class="btn btn-secondary" onclick="showToast('Brouillon sauvegardé')">Sauvegarder en brouillon</button>
-                <button type="button" class="btn btn-primary" onclick="submitTake()">Soumettre à validation</button>
+                <button type="button" class="btn btn-secondary" onclick="runAuditSimulation()" id="btn-run-audit">Lancer l'audit</button>
+                <button type="button" class="btn btn-primary" onclick="submitTake()" id="btn-submit-take" style="display:none;">Soumettre à validation</button>
               </div>
             </div>
           </div>

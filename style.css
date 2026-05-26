@@ -826,6 +826,64 @@ body {
   color: var(--text-secondary);
 }
 
+/* ===== AI AUDIT LOG ===== */
+.ai-audit-container {
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  background: transparent;
+}
+
+.ai-audit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.ai-audit-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ai-audit-status.approved { color: var(--green); }
+.ai-audit-status.rejected { color: var(--red); }
+.ai-audit-status.warning { color: var(--orange); }
+
+.ai-audit-log {
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.ai-audit-line {
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.ai-audit-line:last-child {
+  margin-bottom: 0;
+}
+
+.ai-audit-prefix {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.ai-audit-pass { color: var(--green); }
+.ai-audit-fail { color: var(--red); }
+.ai-audit-warn { color: var(--orange); }
+.ai-audit-info { color: var(--blue); }
+
 /* ===== REDISTRIBUTION ===== */
 .redistribution-item {
   display: flex;

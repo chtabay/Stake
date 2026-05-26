@@ -16,12 +16,24 @@ const TAKES = [
     amount: "500 €",
     amountRaw: 500,
     resolution: "Donnée publique / API officielle",
-    source: "Taux de refinancement principal — publication officielle BCE (ecb.europa.eu)",
-    criteria: "Le taux de refinancement principal de la BCE, tel que publié sur ecb.europa.eu, doit être strictement inférieur à 2.00% à la date du 31 décembre 2027 (dernière décision applicable).",
+    source: "API BCE (SDW) — Série FM.M.U2.EUR.4F.KR.MRR_RT.LEV",
+    criteria: "Valeur de l'observation pour la période '2027-12' strictement inférieure à 2.0000.",
     proofs: [
-      { type: "api", icon: "⚡", label: "API BCE", detail: "Taux directeur en temps réel" },
-      { type: "doc", icon: "📄", label: "Publication officielle", detail: "Communiqué de presse BCE" }
+      { type: "api", label: "API BCE (SDW)", detail: "Point d'accès REST officiel de la Banque Centrale Européenne" },
+      { type: "doc", label: "Documentation", detail: "Définition de la série MRR_RT.LEV" }
     ],
+    aiAudit: {
+      status: "approved",
+      statusLabel: "APPROUVÉ",
+      logs: [
+        { type: "info", text: "Initialisation de l'audit du protocole..." },
+        { type: "pass", text: "[SOURCE] API officielle identifiée (Fiabilité: HAUTE)" },
+        { type: "pass", text: "[MÉTRIQUE] Série FM.M.U2.EUR.4F.KR.MRR_RT.LEV valide" },
+        { type: "pass", text: "[CRITÈRE] Seuil binaire strict (< 2.0000) détecté (Ambiguïté: NULLE)" },
+        { type: "pass", text: "[ÉCHÉANCE] Période d'observation '2027-12' clairement définie" },
+        { type: "info", text: "Conclusion : Protocole robuste. Résolution automatisable via contrat intelligent." }
+      ]
+    },
     causes: [
       { name: "Éducation financière publique", percent: 70 },
       { name: "Recherche économique", percent: 30 }
@@ -41,25 +53,35 @@ const TAKES = [
   },
   {
     id: "STK-002",
-    title: "L'IA générative représentera plus de 10% du PIB des services numériques en France d'ici 2028",
-    description: "L'adoption massive de l'IA générative dans les entreprises françaises va transformer le secteur des services numériques, portant la part de l'IA générative à plus de 10% du PIB sectoriel avant fin 2028.",
+    title: "L'indice de chiffre d'affaires des services informatiques (NAF 62) dépassera la base 150 en 2026",
+    description: "L'adoption massive de l'IA générative dans les entreprises françaises va transformer le secteur des services numériques, portant l'indice de CA du secteur au-delà de 150 (base 100 en 2021).",
     author: "C. Turing",
     authorInitials: "CT",
     status: "negotiation",
     statusLabel: "En négociation",
     badgeClass: "badge-negotiation",
     category: "Technologie",
-    deadline: "31 déc. 2028",
-    deadlineISO: "2028-12-31",
+    deadline: "31 déc. 2026",
+    deadlineISO: "2026-12-31",
     amount: "1 200 €",
     amountRaw: 1200,
     resolution: "Statistique officielle",
-    source: "INSEE — Comptes nationaux, secteur des services numériques",
-    criteria: "La part de l'IA générative dans le PIB du secteur des services numériques français, telle que mesurée par l'INSEE ou la DGE, doit dépasser 10% sur l'année civile 2028.",
+    source: "API INSEE — Série 010534123 (Indice de chiffre d'affaires - Programmation, conseil et autres activités informatiques)",
+    criteria: "La valeur moyenne annuelle de l'indice pour l'année 2026, telle que publiée par l'INSEE, doit être strictement supérieure à 150.0.",
     proofs: [
-      { type: "stat", icon: "📊", label: "INSEE", detail: "Statistiques sectorielles annuelles" },
-      { type: "doc", icon: "📋", label: "Rapport DGE", detail: "Direction Générale des Entreprises" }
+      { type: "stat", label: "API BDM INSEE", detail: "Série chronologique 010534123" }
     ],
+    aiAudit: {
+      status: "warning",
+      statusLabel: "AMENDEMENT REQUIS",
+      logs: [
+        { type: "info", text: "Initialisation de l'audit du protocole..." },
+        { type: "pass", text: "[SOURCE] API INSEE identifiée (Fiabilité: HAUTE)" },
+        { type: "pass", text: "[MÉTRIQUE] Série 010534123 valide" },
+        { type: "warn", text: "[ÉCHÉANCE] Décalage de publication : l'indice définitif de 2026 ne sera publié qu'en mars 2027." },
+        { type: "info", text: "Conclusion : Protocole globalement valide, mais l'échéance de résolution doit être ajustée au 31/03/2027 pour tenir compte des délais de publication officiels." }
+      ]
+    },
     causes: [
       { name: "Formation numérique", percent: 50 },
       { name: "Recherche en IA", percent: 50 }
@@ -166,12 +188,23 @@ const TAKES = [
     amount: "3 000 €",
     amountRaw: 3000,
     resolution: "Cours financier",
-    source: "CoinMarketCap — Prix spot BTC/USD",
-    criteria: "Le prix spot du Bitcoin (BTC) en USD, tel que rapporté par CoinMarketCap (moyenne sur 24h), doit avoir atteint ou dépassé 200 000 USD au moins une fois avant le 1er janvier 2027.",
+    source: "Binance API (api.binance.com/api/v3/klines)",
+    criteria: "Prix de clôture (Close) de la bougie 1h (interval=1h) du 31/12/2026 à 23:00:00 UTC strictement supérieur à 200000.00 USDT.",
     proofs: [
-      { type: "api", icon: "⚡", label: "CoinMarketCap API", detail: "Prix spot historique BTC/USD" },
-      { type: "doc", icon: "📸", label: "Snapshot horodaté", detail: "Capture vérifiable avec timestamp" }
+      { type: "api", label: "Binance API", detail: "Endpoint klines, symbol=BTCUSDT" }
     ],
+    aiAudit: {
+      status: "approved",
+      statusLabel: "APPROUVÉ",
+      logs: [
+        { type: "info", text: "Initialisation de l'audit du protocole..." },
+        { type: "pass", text: "[SOURCE] API Binance identifiée (Fiabilité: ACCEPTABLE)" },
+        { type: "pass", text: "[MÉTRIQUE] Paire BTCUSDT valide" },
+        { type: "pass", text: "[CRITÈRE] Seuil binaire strict (> 200000.00) détecté" },
+        { type: "pass", text: "[ÉCHÉANCE] Horodatage UTC exact spécifié (23:00:00 UTC)" },
+        { type: "info", text: "Conclusion : Protocole robuste. Résolution automatisable via oracle décentralisé." }
+      ]
+    },
     causes: [
       { name: "Éducation financière publique", percent: 50 },
       { name: "Lutte contre les arnaques crypto", percent: 50 }
@@ -494,6 +527,23 @@ function renderTakeDetail(takeId) {
       <p><strong>Type :</strong> ${take.resolution}</p>
       <p style="margin-top:0.5rem"><strong>Source :</strong> ${take.source}</p>
       <p style="margin-top:0.5rem"><strong>Critères :</strong> ${take.criteria}</p>
+      
+      ${take.aiAudit ? `
+      <div class="ai-audit-container">
+        <div class="ai-audit-header">
+          <span>Audit du Protocole (IA)</span>
+          <span class="ai-audit-status ${take.aiAudit.status}">[${take.aiAudit.statusLabel}]</span>
+        </div>
+        <div class="ai-audit-log">
+          ${take.aiAudit.logs.map(log => `
+            <div class="ai-audit-line">
+              <span class="ai-audit-prefix">></span>
+              <span class="ai-audit-${log.type}">${log.text}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      ` : ''}
     </div>
 
     <div class="take-section">
@@ -731,6 +781,10 @@ function goToStep(step) {
 
   if (step === 4) {
     renderSummary();
+    document.getElementById('create-audit-container').style.display = 'none';
+    document.getElementById('create-audit-log').innerHTML = '';
+    document.getElementById('btn-run-audit').style.display = 'block';
+    document.getElementById('btn-submit-take').style.display = 'none';
   }
 }
 
@@ -791,6 +845,53 @@ function submitTake() {
       goToStep(1);
     }
   );
+}
+
+function runAuditSimulation() {
+  const container = document.getElementById('create-audit-container');
+  const log = document.getElementById('create-audit-log');
+  const status = document.getElementById('create-audit-status');
+  const btnAudit = document.getElementById('btn-run-audit');
+  const btnSubmit = document.getElementById('btn-submit-take');
+
+  container.style.display = 'block';
+  btnAudit.style.display = 'none';
+  log.innerHTML = '';
+  status.textContent = '[EN COURS]';
+  status.className = 'ai-audit-status';
+
+  const lines = [
+    { type: 'info', text: "Analyse sémantique de l'affirmation...", delay: 500 },
+    { type: 'pass', text: "[CHECK] Affirmation détectée comme falsifiable", delay: 1200 },
+    { type: 'info', text: "Vérification de la source de résolution...", delay: 2000 },
+    { type: 'warn', text: "[WARN] Source personnalisée détectée. L'oracle nécessitera une validation manuelle.", delay: 3000 },
+    { type: 'info', text: "Analyse des critères de réussite...", delay: 3500 },
+    { type: 'pass', text: "[CHECK] Critères suffisamment précis", delay: 4500 },
+    { type: 'info', text: "Génération du rapport...", delay: 5000 }
+  ];
+
+  let currentDelay = 0;
+  lines.forEach((line, index) => {
+    setTimeout(() => {
+      const lineEl = document.createElement('div');
+      lineEl.className = 'ai-audit-line';
+      lineEl.innerHTML = `<span class="ai-audit-prefix">></span><span class="ai-audit-${line.type}">${line.text}</span>`;
+      log.appendChild(lineEl);
+
+      if (index === lines.length - 1) {
+        setTimeout(() => {
+          const finalEl = document.createElement('div');
+          finalEl.className = 'ai-audit-line';
+          finalEl.innerHTML = `<span class="ai-audit-prefix">></span><span class="ai-audit-info">Conclusion : Protocole acceptable avec réserves. Validation manuelle requise après soumission.</span>`;
+          log.appendChild(finalEl);
+          
+          status.textContent = '[ACCEPTABLE]';
+          status.classList.add('warning');
+          btnSubmit.style.display = 'block';
+        }, 800);
+      }
+    }, line.delay);
+  });
 }
 
 // ===== CONFIRMATION DIALOG =====
