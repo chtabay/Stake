@@ -55,22 +55,27 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <div class="hero-eyebrow">Infrastructure d'engagement vérifiable — pas un système de paris</div>
+        <div class="hero-eyebrow">Infrastructure d'engagement vérifiable — ni pari, ni marché prédictif</div>
         <h1>Le coût d'avoir <em>tort</em></h1>
         <p class="hero-subtitle">
-          Déposez une hypothèse falsifiable. Engagez-vous publiquement — mise économique facultative.
-          Si vous misez et avez raison, votre mise est restituée. Si vous avez tort, elle est reversée à des causes d'intérêt général — jamais à l'autre partie.
+          Déposez une hypothèse falsifiable, seul ou face à un contradicteur.
+          Une mise financière est facultative : la friction principale est l'archive publique et l'audit algorithmique du protocole. Si vous engagez une somme, elle vous est restituée en cas de raison, ou reversée à des causes d'intérêt général en cas de tort — jamais à l'autre partie.
         </p>
         <div class="hero-mechanism">
           <div class="hero-mechanism-row">
             <span class="hero-mechanism-key">RAISON</span>
             <span class="hero-mechanism-arrow">→</span>
-            <span class="hero-mechanism-value">mise restituée</span>
+            <span class="hero-mechanism-value">mise restituée (si engagée)</span>
           </div>
           <div class="hero-mechanism-row">
             <span class="hero-mechanism-key">TORT</span>
             <span class="hero-mechanism-arrow">→</span>
-            <span class="hero-mechanism-value">mise reversée aux causes</span>
+            <span class="hero-mechanism-value">mise reversée aux causes (si engagée)</span>
+          </div>
+          <div class="hero-mechanism-row">
+            <span class="hero-mechanism-key">SANS MISE</span>
+            <span class="hero-mechanism-arrow">→</span>
+            <span class="hero-mechanism-value">archive publique + audit IA</span>
           </div>
           <div class="hero-mechanism-row">
             <span class="hero-mechanism-key">JAMAIS</span>
@@ -84,29 +89,26 @@
         </div>
 
         <div class="hero-roles">
-          <div class="hero-roles-header">[RÔLES & CONFIGURATIONS]</div>
+          <div class="hero-roles-header">[DEUX_RÔLES_SYMÉTRIQUES]</div>
           <div class="hero-roles-grid">
             <div class="hero-role">
-              <div class="hero-role-label">AUTEUR <span class="hero-role-flag">requis</span></div>
+              <div class="hero-role-label">AUTEUR</div>
               <ul class="hero-role-list">
-                <li>énonce l'affirmation falsifiable</li>
-                <li>définit le protocole de résolution</li>
-                <li>engage publiquement <span class="hero-role-opt">(mise facultative)</span></li>
+                <li>énonce l'affirmation</li>
+                <li>propose le protocole de résolution</li>
+                <li>mise financière facultative</li>
               </ul>
             </div>
             <div class="hero-role">
-              <div class="hero-role-label">CONTRADICTEUR <span class="hero-role-flag">facultatif</span></div>
+              <div class="hero-role-label">CONTRADICTEUR</div>
               <ul class="hero-role-list">
-                <li>conteste l'affirmation</li>
-                <li>amende ou accepte le protocole</li>
-                <li>engage publiquement <span class="hero-role-opt">(mise facultative)</span></li>
+                <li>conteste, amende ou certifie le protocole</li>
+                <li>présence facultative (take unilatérale possible)</li>
+                <li>mise financière facultative</li>
               </ul>
             </div>
           </div>
-          <div class="hero-roles-footer">
-            <div class="hero-mode-row"><span class="hero-mode-tag">[UNILATÉRAL]</span> auteur seul — engagement public, sans opposition</div>
-            <div class="hero-mode-row"><span class="hero-mode-tag">[CONTRADICTOIRE]</span> auteur + contradicteur — protocole négocié et accepté</div>
-          </div>
+          <div class="hero-roles-footer">// rôles symétriques · mêmes droits sur le protocole · engagement financier optionnel pour chacun</div>
         </div>
       </div>
     </section>
@@ -164,13 +166,71 @@
           <div class="principle-card">
             <div class="principle-icon">[05_FRICTION]</div>
             <h3>Coût de Conviction</h3>
-            <p>Chaque partie peut immobiliser une mise — facultative, mais publique si elle existe. Avoir raison la restitue. Avoir tort l'efface : les fonds sont reversés à des causes d'intérêt général, jamais à l'autre partie. Ce n'est pas un pari, c'est un coût d'engagement.</p>
+            <p>La friction principale est l'archive publique et l'audit IA. L'engagement financier est facultatif : si une partie immobilise une mise, elle la récupère en cas de raison, la perd en cas de tort. Les fonds perdus sont reversés à des causes d'intérêt général — jamais à l'autre partie. Ce n'est pas un pari.</p>
           </div>
           <div class="principle-card">
             <div class="principle-icon">[06_ARCHIVE]</div>
             <h3>Mémoire Inaltérable</h3>
             <p>Chaque événement (dépôt, amendement, résolution, preuve) est historisé dans un registre public non destructif. Les convictions sont documentées pour l'histoire.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modalities -->
+    <section class="modalities">
+      <div class="container">
+        <div class="section-header">
+          <h2>[MODALITÉS D'ENGAGEMENT]</h2>
+          <p>Une take peut être déposée selon trois modes d'engagement croissant. La mise financière n'est jamais obligatoire — la friction peut être purement intellectuelle et archivistique.</p>
+        </div>
+
+        <div class="modalities-grid">
+          <article class="modality">
+            <header class="modality-header">
+              <span class="modality-code">MODE_01</span>
+              <h3 class="modality-name">Take unilatérale</h3>
+            </header>
+            <p class="modality-desc">Une déclaration formelle, sans engagement financier, sans contradicteur. L'auteur s'engage publiquement et accepte que sa conviction soit archivée et confrontée à l'épreuve du temps.</p>
+            <dl class="modality-matrix">
+              <div class="modality-row"><dt>AUTEUR</dt><dd>sans mise</dd></div>
+              <div class="modality-row"><dt>CONTRADICTEUR</dt><dd>absent</dd></div>
+              <div class="modality-row"><dt>VALIDATION</dt><dd>audit IA seul</dd></div>
+              <div class="modality-row"><dt>FRICTION</dt><dd>archive publique</dd></div>
+            </dl>
+          </article>
+
+          <article class="modality">
+            <header class="modality-header">
+              <span class="modality-code">MODE_02</span>
+              <h3 class="modality-name">Take engagée</h3>
+            </header>
+            <p class="modality-desc">L'auteur immobilise une mise pour matérialiser sa conviction. Aucun contradicteur n'intervient : l'audit IA reste l'unique juge de la robustesse du protocole.</p>
+            <dl class="modality-matrix">
+              <div class="modality-row"><dt>AUTEUR</dt><dd>avec mise</dd></div>
+              <div class="modality-row"><dt>CONTRADICTEUR</dt><dd>absent</dd></div>
+              <div class="modality-row"><dt>VALIDATION</dt><dd>audit IA seul</dd></div>
+              <div class="modality-row"><dt>FRICTION</dt><dd>archive + capital</dd></div>
+            </dl>
+          </article>
+
+          <article class="modality">
+            <header class="modality-header">
+              <span class="modality-code">MODE_03</span>
+              <h3 class="modality-name">Take contestée</h3>
+            </header>
+            <p class="modality-desc">Un contradicteur intervient. Le protocole devient un consensus négocié. Le contradicteur peut s'engager financièrement, ou simplement chercher à formaliser, certifier ou clarifier l'hypothèse de l'auteur.</p>
+            <dl class="modality-matrix">
+              <div class="modality-row"><dt>AUTEUR</dt><dd>mise optionnelle</dd></div>
+              <div class="modality-row"><dt>CONTRADICTEUR</dt><dd>présent, mise optionnelle</dd></div>
+              <div class="modality-row"><dt>VALIDATION</dt><dd>audit IA + consensus</dd></div>
+              <div class="modality-row"><dt>FRICTION</dt><dd>archive + (capital)</dd></div>
+            </dl>
+          </article>
+        </div>
+
+        <div class="modalities-footer">
+          // dans tous les modes : l'audit IA est obligatoire · l'affirmation doit être falsifiable · le protocole de résolution est immuable après scellement
         </div>
       </div>
     </section>
@@ -194,7 +254,7 @@
             <div class="step-number">PHASE_02</div>
             <div>
               <h3>Audit & Négociation</h3>
-              <p>Le protocole est soumis à un audit algorithmique qui valide la fiabilité de la source et l'absence d'ambiguïté des critères. Les parties (Auteur et Contradicteur) peuvent amender ce contrat jusqu'à obtenir un consensus parfait.</p>
+              <p>Le protocole est soumis à un audit algorithmique qui valide la fiabilité de la source, l'absence d'ambiguïté des critères et la falsifiabilité de l'affirmation. En présence d'un contradicteur, les parties peuvent amender le contrat jusqu'au consensus ; sinon, l'audit IA est seul juge.</p>
             </div>
           </div>
           <div class="step">
@@ -207,8 +267,8 @@
           <div class="step">
             <div class="step-number">PHASE_04</div>
             <div>
-              <h3>Résolution & Redistribution</h3>
-              <p>À l'échéance, l'Oracle est interrogé. La résolution est déterministe : chaque partie qui a raison récupère sa mise, chaque partie qui a tort la perd. Les fonds perdus ne sont jamais reversés à l'autre partie — ils sont redistribués à des causes d'intérêt général validées par la plateforme. Stake n'est ni un pari, ni un marché prédictif.</p>
+              <h3>Résolution & Archivage</h3>
+              <p>À l'échéance, l'Oracle est interrogé. Le résultat (VRAI/FAUX) est consigné dans l'archive publique et notifié à l'auteur. Si une mise a été engagée, elle est restituée en cas de raison, ou reversée à des causes d'intérêt général en cas de tort — jamais à l'autre partie. La trace, elle, reste indélébile, indépendamment de tout engagement financier.</p>
             </div>
           </div>
         </div>
@@ -524,12 +584,12 @@
           <p>Stake propose une infrastructure permettant de transformer une opinion en engagement vérifiable :</p>
           <ul>
             <li>Déposer une take — une affirmation claire et falsifiable</li>
-            <li>Définir les conditions de résolution — protocole, preuves, échéance</li>
-            <li>Associer des preuves et des méthodes de vérification (Oracles)</li>
-            <li>Engager éventuellement une somme — un coût de conviction, jamais une obligation</li>
-            <li>Assumer le risque financier — si une mise est engagée, elle est rendue en cas de raison, définitivement perdue et reversée à des causes d'intérêt général en cas de tort (jamais à l'autre partie)</li>
+            <li>Définir les conditions de résolution — protocole, preuves, échéance, Oracle</li>
+            <li>Choisir un mode d'engagement : unilatéral, engagé (avec mise), ou contesté (avec contradicteur)</li>
+            <li>Soumettre le protocole à l'audit IA — obligatoire dans tous les modes</li>
+            <li>Si une mise est engagée, en assumer le risque — argent restitué si raison, reversé à des causes d'intérêt général si tort, jamais à l'autre partie</li>
+            <li>Accepter l'archive publique et indélébile, indépendamment de l'engagement financier</li>
           </ul>
-          <p>Une take peut exister en mode <strong>unilatéral</strong> (auteur seul, comme témoignage public archivé) ou <strong>contradictoire</strong> (auteur et contradicteur, après négociation du protocole). La mise économique reste facultative dans les deux modes : c'est la falsifiabilité et la traçabilité qui font la valeur d'une take, pas le montant engagé.</p>
         </div>
 
         <div class="manifesto-block">
