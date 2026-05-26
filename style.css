@@ -279,6 +279,47 @@ body {
   line-height: 1.6;
 }
 
+.hero-mechanism {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.hero-mechanism-row {
+  display: grid;
+  grid-template-columns: 90px 30px 1fr;
+  align-items: center;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-mechanism-row:last-child {
+  border-bottom: none;
+}
+
+.hero-mechanism-key {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero-mechanism-arrow {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.hero-mechanism-value {
+  color: var(--text-secondary);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+
 .hero-actions {
   display: flex;
   gap: 1rem;
