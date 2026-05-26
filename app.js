@@ -323,6 +323,10 @@ function navigateTo(page, param) {
     renderTakeDetail(param);
   }
 
+  if (page === 'challenge' && param) {
+    renderChallenge(param);
+  }
+
   if (page === 'profil') {
     renderProfileTakes();
   }
@@ -553,7 +557,7 @@ function renderTakeDetail(takeId) {
         </div>
       </div>
       <div style="margin-top:1.25rem;display:flex;gap:0.5rem;">
-        <button class="btn btn-primary btn-sm" style="flex:1" onclick="showToast('Fonctionnalité bientôt disponible')">Challenger cette take</button>
+        <button class="btn btn-primary btn-sm" style="flex:1" onclick="window.location.hash='challenge/${take.id}'">Challenger cette take</button>
       </div>
     </div>
 
@@ -573,6 +577,73 @@ function renderTakeDetail(takeId) {
 
 function formatAmount(n) {
   return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
+// ===== RENDER CHALLENGE =====
+
+function renderChallenge(takeId) {
+  const take = TAKES.find(t => t.id === takeId);
+  if (!take) {
+    document.getElementById('challenge-contract').innerHTML = '<p>Take introuvable.</p>';
+    return;
+  }
+
+  document.getElementById('challenge-title').innerHTML = `<strong>${take.author}</strong> vous défie sur cette hypothèse`;
+  
+  const challengerAmount = take.challenger ? take.challenger.amount : take.amount;
+
+  document.getElementById('challenge-contract').innerHTML = `
+    <div class="challenge-contract-section">
+      <div class="challenge-contract-title">L'Affirmation</div>
+      <div class="challenge-statement">"${take.title}"</div>
+      <div class="challenge-desc">${take.description}</div>
+    </div>
+    
+    <div class="challenge-contract-section">
+      <div class="challenge-contract-title">Le Protocole de Résolution</div>
+      <div class="challenge-protocol-grid">
+        <div class="challenge-protocol-item">
+          <div class="challenge-protocol-label">Échéance</div>
+          <div class="challenge-protocol-value">${take.deadline}</div>
+        </div>
+        <div class="challenge-protocol-item">
+          <div class="challenge-protocol-label">Type de résolution</div>
+          <div class="challenge-protocol-value">${take.resolution}</div>
+        </div>
+        <div class="challenge-protocol-item" style="grid-column: 1 / -1;">
+          <div class="challenge-protocol-label">Source de vérification</div>
+          <div class="challenge-protocol-value">${take.source}</div>
+        </div>
+        <div class="challenge-protocol-item" style="grid-column: 1 / -1;">
+          <div class="challenge-protocol-label">Critères de réussite exacts</div>
+          <div class="challenge-protocol-value">${take.criteria}</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="challenge-contract-section">
+      <div class="challenge-contract-title">L'Engagement Demandé</div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div style="font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--accent);">${challengerAmount}</div>
+        <div style="color:var(--text-secondary);font-size:0.9rem;">à immobiliser jusqu'au ${take.deadline}</div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('btn-accept-challenge').textContent = `Accepter et engager ${challengerAmount}`;
+}
+
+function acceptChallenge() {
+  showConfirm(
+    'Accepter le défi ?',
+    'En acceptant, vous vous engagez formellement sur ce protocole. Vos fonds seront immobilisés jusqu\'à la résolution.',
+    () => {
+      showToast('Défi accepté ! Redirection vers le registre...');
+      setTimeout(() => {
+        window.location.hash = 'registre';
+      }, 1500);
+    }
+  );
 }
 
 // ===== FILTERS =====
@@ -729,10 +800,10 @@ function showConfirm(title, message, onConfirm) {
   const overlay = document.getElementById('confirm-overlay');
   if (!overlay) return;
 
-  overlay.querySelector('.confirm-title').textContent = title;
-  overlay.querySelector('.confirm-message').textContent = message;
+  document.getElementById('confirm-title').textContent = title;
+  document.getElementById('confirm-message').textContent = message;
 
-  const confirmBtn = overlay.querySelector('.confirm-btn-yes');
+  const confirmBtn = document.getElementById('confirm-action');
   confirmBtn.onclick = () => {
     closeConfirm();
     if (onConfirm) onConfirm();

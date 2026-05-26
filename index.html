@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stake — Le coût d'avoir raison</title>
   <meta name="description" content="Infrastructure de dépôt, d'engagement et de résolution de takes. Une opinion structurée, falsifiable et assumée publiquement possède plus de valeur qu'une réaction instantanée sans conséquence.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chtabay.github.io/Stake/">
+  <meta property="og:title" content="Stake — Le coût d'avoir raison">
+  <meta property="og:description" content="Infrastructure de dépôt, d'engagement et de résolution de takes. Une opinion structurée, falsifiable et assumée publiquement possède plus de valeur qu'une réaction instantanée sans conséquence.">
+  <meta property="og:image" content="https://chtabay.github.io/Stake/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://chtabay.github.io/Stake/">
+  <meta name="twitter:title" content="Stake — Le coût d'avoir raison">
+  <meta name="twitter:description" content="Infrastructure de dépôt, d'engagement et de résolution de takes. Une opinion structurée, falsifiable et assumée publiquement possède plus de valeur qu'une réaction instantanée sans conséquence.">
+  <meta name="twitter:image" content="https://chtabay.github.io/Stake/og-image.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -598,6 +612,94 @@
 
     <footer class="footer">
       <div class="container">
+        <div class="footer-inner">
+          <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
+          <div class="footer-links">
+            <a href="#manifesto" data-nav="manifesto">Manifeste</a>
+            <a href="https://github.com/chtabay/Stake" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ====== PAGE: OG PREVIEW ====== -->
+  <main id="page-og-preview" class="page" role="main">
+    <div class="container">
+      <div class="section-header" style="margin-top: 2rem;">
+        <h2>Aperçu Open Graph</h2>
+        <p>Généré dynamiquement lors du partage d'une take sur les réseaux sociaux.</p>
+      </div>
+      
+      <div class="og-preview-container">
+        <div class="og-image-card">
+          <div class="og-header">
+            <div class="og-logo">S</div>
+            <div class="og-brand">STAKE</div>
+            <div class="og-id">STK-002</div>
+          </div>
+          
+          <div class="og-content">
+            <h1 class="og-title">L'IA générative représentera plus de 10% du PIB des services numériques en France d'ici 2028</h1>
+            
+            <div class="og-meta">
+              <div class="og-meta-item">
+                <div class="og-meta-label">ENGAGEMENT</div>
+                <div class="og-meta-value og-amount">1 200 €</div>
+              </div>
+              <div class="og-meta-item">
+                <div class="og-meta-label">ÉCHÉANCE</div>
+                <div class="og-meta-value">31 déc. 2028</div>
+              </div>
+              <div class="og-meta-item">
+                <div class="og-meta-label">PORTEUR</div>
+                <div class="og-meta-value">C. Turing</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="og-footer">
+            <div class="og-status">EN NÉGOCIATION</div>
+            <div class="og-hash">sha256:b4e8c3d0e2f956a7018923bc4de5fa67890b1c2d3e4f5a6b7c8d9e0f1a2b3c4d</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====== PAGE: CHALLENGE ====== -->
+  <main id="page-challenge" class="page" role="main">
+    <div class="container-narrow">
+      <div class="challenge-page">
+        <div class="challenge-header">
+          <div class="challenge-eyebrow">DÉFI REÇU</div>
+          <h1 id="challenge-title">Un utilisateur vous défie sur cette hypothèse</h1>
+          <p id="challenge-subtitle" class="challenge-subtitle">Examinez le protocole avant de vous engager.</p>
+        </div>
+
+        <div class="challenge-contract" id="challenge-contract">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="challenge-actions-container">
+          <div class="challenge-friction-warning">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <div>
+              <strong>Avertissement de friction</strong>
+              <p>L'acceptation est définitive. Vos fonds seront immobilisés jusqu'à la résolution selon le protocole défini ci-dessus.</p>
+            </div>
+          </div>
+          
+          <div class="challenge-actions">
+            <button class="btn btn-secondary btn-lg" onclick="showToast('Ouverture de la proposition d\'amendement...')">Proposer un amendement</button>
+            <button class="btn btn-primary btn-lg" id="btn-accept-challenge" onclick="acceptChallenge()">Accepter et engager</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container-narrow">
         <div class="footer-inner">
           <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
           <div class="footer-links">
