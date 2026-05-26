@@ -458,7 +458,11 @@ function renderTakesList(filter, searchQuery, sortBy) {
           <span class="take-meta-item">
             [CONTRADICTEUR]
             ${take.challenger.name}
-          </span>` : ''}
+          </span>` : `
+          <span class="take-meta-item take-meta-item--muted">
+            [UNILATÉRALE]
+            audit IA seul
+          </span>`}
         </div>
       </div>
       <div class="take-card-right">
@@ -584,8 +588,17 @@ function renderTakeDetail(takeId) {
     </div>
   `;
 
-  // Sidebar
+  const modeLabel = take.challenger ? 'MODE CONTRADICTOIRE' : 'MODE UNILATÉRAL';
+  const modeDesc = take.challenger
+    ? 'Une contradiction a été déposée. Le protocole a été négocié et validé par les deux parties.'
+    : 'Aucun contradicteur n\'a contesté cette take. La validité du protocole repose uniquement sur l\'audit algorithmique.';
+
   document.getElementById('take-detail-sidebar').innerHTML = `
+    <div class="sidebar-card">
+      <div class="sidebar-mode-tag">${modeLabel}</div>
+      <div class="sidebar-mode-desc">${modeDesc}</div>
+    </div>
+
     <div class="sidebar-card">
       <div class="sidebar-card-title">Mises immobilisées</div>
       <div class="sidebar-amount">${take.challenger ? formatAmount(take.amountRaw + parseInt(take.challenger.amount)) + ' €' : take.amount}</div>
@@ -671,23 +684,36 @@ function renderChallenge(takeId) {
     </div>
     
     <div class="challenge-contract-section">
-      <div class="challenge-contract-title">L'Engagement Demandé</div>
+      <div class="challenge-contract-title">L'Engagement Suggéré (si mise)</div>
       <div style="display:flex;align-items:center;gap:1rem;">
         <div style="font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--accent);">${challengerAmount}</div>
-        <div style="color:var(--text-secondary);font-size:0.9rem;">à immobiliser jusqu'au ${take.deadline}</div>
+        <div style="color:var(--text-secondary);font-size:0.9rem;">à immobiliser jusqu'au ${take.deadline} — la mise reste optionnelle</div>
       </div>
     </div>
   `;
 
-  document.getElementById('btn-accept-challenge').textContent = `Accepter et engager ${challengerAmount}`;
+  document.getElementById('btn-accept-challenge').textContent = `Contredire avec mise (${challengerAmount})`;
 }
 
 function acceptChallenge() {
   showConfirm(
-    'Confirmer la contradiction ?',
-    'En acceptant, vous vous engagez formellement sur ce protocole. Vos fonds seront immobilisés jusqu\'à la résolution.',
+    'Confirmer la contradiction avec mise ?',
+    'Vous vous engagez formellement sur ce protocole. Vos fonds seront immobilisés jusqu\'à la résolution. En cas d\'erreur, ils seront reversés aux causes d\'intérêt général définies dans le contrat.',
     () => {
-      showToast('Contradiction enregistrée. Redirection vers le registre...');
+      showToast('Contradiction enregistrée (avec mise). Redirection vers le registre...');
+      setTimeout(() => {
+        window.location.hash = 'registre';
+      }, 1500);
+    }
+  );
+}
+
+function contradictWithoutStake() {
+  showConfirm(
+    'Contredire sans mise ?',
+    'Vous contestez formellement ce protocole sans engagement financier. Votre rôle sera documentaire : forcer la clarification ou demander un amendement. Aucune perte possible.',
+    () => {
+      showToast('Contradiction sans mise enregistrée. Redirection vers le registre...');
       setTimeout(() => {
         window.location.hash = 'registre';
       }, 1500);
