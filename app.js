@@ -587,9 +587,9 @@ function renderTakeDetail(takeId) {
   // Sidebar
   document.getElementById('take-detail-sidebar').innerHTML = `
     <div class="sidebar-card">
-      <div class="sidebar-card-title">Engagement total</div>
+      <div class="sidebar-card-title">Mises immobilisées</div>
       <div class="sidebar-amount">${take.challenger ? formatAmount(take.amountRaw + parseInt(take.challenger.amount)) + ' €' : take.amount}</div>
-      <div class="sidebar-amount-label">immobilisés jusqu'à résolution</div>
+      <div class="sidebar-amount-label">total verrouillé jusqu'à résolution — chaque partie récupère sa mise si elle a raison, sinon elle est reversée aux causes</div>
       <div style="margin-top:1.25rem">
         <div class="sidebar-card-title" style="border:none;padding:0;margin-bottom:0.75rem">Parties engagées</div>
         <div class="sidebar-parties">
