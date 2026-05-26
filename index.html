@@ -103,7 +103,7 @@
               </ul>
             </div>
           </div>
-          <div class="hero-roles-footer">// take unilatérale (sans contradicteur) → la validité du protocole repose uniquement sur l'audit algorithmique</div>
+          <div class="hero-roles-footer">// take unilatérale (sans contradicteur) → la validité du protocole est vérifiée par audit algorithmique, complété d'un comité humain pour les protocoles complexes</div>
         </div>
       </div>
     </section>
@@ -135,7 +135,7 @@
       <div class="container">
         <div class="section-header">
           <h2>[PRINCIPES FONDATEURS]</h2>
-          <p>Une infrastructure conçue pour la responsabilité intellectuelle. La confiance n'est pas requise, elle est cryptographiquement prouvée.</p>
+          <p>Une infrastructure conçue pour la responsabilité intellectuelle. Chaque take est scellée, horodatée et archivée dans un registre non destructif.</p>
         </div>
         <div class="principles-grid">
           <div class="principle-card">
@@ -150,13 +150,13 @@
           </div>
           <div class="principle-card">
             <div class="principle-icon">[03_AUDIT]</div>
-            <h3>Validation Algorithmique</h3>
-            <p>Avant tout engagement, un audit IA vérifie la robustesse du protocole : fiabilité de la source, précision de la métrique, et absence d'ambiguïté dans les critères.</p>
+            <h3>Validation du Protocole</h3>
+            <p>Avant scellement, un audit algorithmique vérifie la robustesse du <em>protocole</em> de résolution : fiabilité de la source, précision de la métrique, absence d'ambiguïté. Pour les protocoles complexes (huissier, arbitrage, scénarios multi-critères), un comité de validation humain intervient en complément. L'audit ne juge jamais l'issue, uniquement la robustesse du contrat.</p>
           </div>
           <div class="principle-card">
-            <div class="principle-icon">[04_AUTHENTIFICATION]</div>
-            <h3>Scellement Cryptographique</h3>
-            <p>L'affirmation, les identités, le montant et le protocole génèrent une empreinte unique (Hash SHA-256). L'engagement devient mathématiquement immuable et horodaté.</p>
+            <div class="principle-icon">[04_SCELLEMENT]</div>
+            <h3>Sceau d'Intégrité</h3>
+            <p>Au scellement, l'affirmation, les parties, le protocole et les montants sont compilés en une empreinte unique (sceau d'intégrité horodaté). Toute modification ultérieure produit une nouvelle version traçable — l'historique reste non destructif.</p>
           </div>
           <div class="principle-card">
             <div class="principle-icon">[05_FRICTION]</div>
@@ -191,21 +191,21 @@
             <div class="step-number">PHASE_02</div>
             <div>
               <h3>Audit & Négociation</h3>
-              <p>Le protocole est systématiquement soumis à un audit algorithmique qui valide la fiabilité de la source et l'absence d'ambiguïté des critères. Si un contradicteur se présente, les deux parties peuvent en plus amender le contrat jusqu'à obtenir un consensus. Sans contradicteur, l'audit IA est le seul garant de la validité du protocole.</p>
+              <p>Le protocole est soumis à un audit algorithmique qui vérifie la fiabilité de la source et l'absence d'ambiguïté des critères. Pour les protocoles complexes (huissier, arbitrage, multi-sources), un comité de validation humain est saisi. Si un contradicteur se présente, les deux parties peuvent amender le contrat jusqu'à consensus. L'audit ne juge jamais l'issue future — seulement la solidité du contrat avant scellement.</p>
             </div>
           </div>
           <div class="step">
             <div class="step-number">PHASE_03</div>
             <div>
-              <h3>Authentification & Scellement</h3>
-              <p>Une fois le consensus atteint, l'engagement est scellé. Un hash SHA-256 unique est généré, verrouillant l'affirmation, le protocole et les fonds engagés. Le contrat devient immuable et public.</p>
+              <h3>Scellement & Verrouillage</h3>
+              <p>Une fois le consensus atteint (ou l'audit IA validé en mode unilatéral), l'engagement est scellé. Une empreinte horodatée (sceau d'intégrité) est calculée à partir de l'affirmation, du protocole et des montants engagés. Le contrat est publié sur le registre ; toute modification ultérieure produira une nouvelle version traçable.</p>
             </div>
           </div>
           <div class="step">
             <div class="step-number">PHASE_04</div>
             <div>
               <h3>Résolution & Redistribution</h3>
-              <p>À l'échéance, l'Oracle est interrogé. La résolution est déterministe : chaque partie qui a raison récupère sa mise, chaque partie qui a tort la perd. Les fonds perdus ne sont jamais reversés à l'autre partie — ils sont redistribués à des causes d'intérêt général validées par la plateforme. Stake n'est ni un pari, ni un marché prédictif.</p>
+              <p>À l'échéance, l'Oracle défini dans le protocole est interrogé (API officielle, document horodaté, constat d'huissier, arbitrage). C'est l'Oracle qui tranche, pas une IA. La résolution est déterministe : chaque partie qui a raison récupère sa mise, chaque partie qui a tort la perd au profit des causes d'intérêt général. Stake n'est ni un pari, ni un marché prédictif.</p>
             </div>
           </div>
         </div>
@@ -442,15 +442,16 @@
                 <input type="number" class="form-input" id="take-amount" placeholder="0" min="10" max="10000">
               </div>
               <div class="form-group">
-                <label class="form-label">Cause bénéficiaire en cas d'échec</label>
+                <label class="form-label">Cause bénéficiaire en cas d'échec <span class="form-label-hint">— liste fermée, validée par la plateforme</span></label>
                 <select class="form-select" id="take-cause">
-                  <option value="">Choisir une cause</option>
+                  <option value="">Choisir une cause parmi la liste validée</option>
                   <option>Fonds pour la recherche scientifique</option>
                   <option>Éducation financière publique</option>
                   <option>Lutte contre la désinformation</option>
                   <option>Action climatique</option>
                   <option>Aide humanitaire</option>
                 </select>
+                <p class="form-help">Les causes sont validées par la plateforme selon une gouvernance publique. Aucune redistribution libre n'est possible.</p>
               </div>
             </div>
             <div class="form-step-nav">
@@ -469,7 +470,7 @@
             <div id="create-audit-container" style="display:none; margin-bottom: 2rem;">
               <div class="ai-audit-container">
                 <div class="ai-audit-header">
-                  <span>Audit du Protocole (IA)</span>
+                  <span>Audit de Protocole — vérification de la robustesse, pas de l'issue</span>
                   <span class="ai-audit-status" id="create-audit-status">[EN COURS]</span>
                 </div>
                 <div class="ai-audit-log" id="create-audit-log">
@@ -529,10 +530,10 @@
         </div>
 
         <div class="manifesto-block">
-          <h2>[L'AUTHENTIFICATION DE LA VÉRITÉ]</h2>
-          <p>Une opinion sur Stake n'est pas une simple ligne de texte dans une base de données. C'est un contrat cryptographique.</p>
-          <p>Au moment du scellement, l'affirmation, son protocole de résolution, l'identité des parties et le montant engagé sont compilés pour générer une empreinte unique (Hash SHA-256). Ce sceau garantit qu'aucune virgule ne peut être altérée a posteriori.</p>
-          <p>La preuve, lors de la résolution, subit le même traitement : la réponse de l'oracle (API, document officiel) est capturée, horodatée et signée. La vérité n'est plus une question de confiance, mais de vérification mathématique.</p>
+          <h2>[L'AUTHENTIFICATION DE LA TAKE]</h2>
+          <p>Une opinion sur Stake n'est pas une simple ligne de texte dans une base de données. C'est un contrat formalisé, scellé et archivé.</p>
+          <p>Au moment du scellement, l'affirmation, son protocole de résolution, l'identité des parties et les montants engagés sont compilés en une empreinte unique — un sceau d'intégrité horodaté. Toute tentative de modification a posteriori produit une nouvelle version traçable : l'historique est non destructif.</p>
+          <p>La preuve, lors de la résolution, suit la même logique : la réponse de l'oracle (API, document officiel, attestation) est capturée, horodatée et archivée à côté du contrat scellé. La vérification s'appuie ainsi sur des sources publiques auditables, pas sur la parole d'un tiers.</p>
         </div>
 
         <div class="manifesto-block">

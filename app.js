@@ -461,7 +461,7 @@ function renderTakesList(filter, searchQuery, sortBy) {
           </span>` : `
           <span class="take-meta-item take-meta-item--muted">
             [UNILATÉRALE]
-            audit IA seul
+            audit IA + comité
           </span>`}
         </div>
       </div>
@@ -535,7 +535,7 @@ function renderTakeDetail(takeId) {
       ${take.aiAudit ? `
       <div class="ai-audit-container">
         <div class="ai-audit-header">
-          <span>Audit du Protocole (IA)</span>
+          <span>Audit de Protocole — vérification de la robustesse, pas de l'issue</span>
           <span class="ai-audit-status ${take.aiAudit.status}">[${take.aiAudit.statusLabel}]</span>
         </div>
         <div class="ai-audit-log">
@@ -565,11 +565,12 @@ function renderTakeDetail(takeId) {
 
     <div class="take-section">
       <div class="take-section-title">Redistribution en cas d'échec</div>
+      <p class="take-section-note">// les fonds perdus sont reversés à des causes pré-validées par la plateforme. L'auteur choisit la pondération à partir d'une <a href="#" onclick="showToast('Liste des causes validées (à venir)'); return false;">liste fermée</a>. Aucune redistribution libre ne peut être paramétrée.</p>
       ${take.causes.map(c => `
         <div class="redistribution-item">
           <div class="redistribution-bar-container">
             <div class="redistribution-bar-label">
-              <span>${c.name}</span>
+              <span><span class="redistribution-badge">[CAUSE VALIDÉE]</span> ${c.name}</span>
               <span>${c.percent}%</span>
             </div>
             <div class="redistribution-bar">
@@ -590,8 +591,8 @@ function renderTakeDetail(takeId) {
 
   const modeLabel = take.challenger ? 'MODE CONTRADICTOIRE' : 'MODE UNILATÉRAL';
   const modeDesc = take.challenger
-    ? 'Une contradiction a été déposée. Le protocole a été négocié et validé par les deux parties.'
-    : 'Aucun contradicteur n\'a contesté cette take. La validité du protocole repose uniquement sur l\'audit algorithmique.';
+    ? 'Une contradiction a été déposée. Le protocole a été négocié et validé par les deux parties, en complément de l\'audit algorithmique.'
+    : 'Aucun contradicteur n\'a contesté cette take. La validité du protocole repose sur l\'audit algorithmique, complété d\'un comité humain pour les protocoles complexes.';
 
   document.getElementById('take-detail-sidebar').innerHTML = `
     <div class="sidebar-card">
