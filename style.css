@@ -365,6 +365,38 @@ body {
   margin-bottom: 0.85rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-role-flag {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: lowercase;
+}
+
+.hero-role-opt {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.hero-mode-tag {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-right: 0.3rem;
+}
+
+.hero-mode-row {
+  padding: 0.15rem 0;
+}
+
+.hero-mode-row + .hero-mode-row {
+  padding-top: 0.35rem;
 }
 
 .hero-role-list {
