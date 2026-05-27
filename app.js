@@ -619,8 +619,9 @@ function renderTakeDetail(takeId) {
           `).join('')}
         </div>
       </div>
-      <div style="margin-top:1.25rem;display:flex;gap:0.5rem;">
-        <button class="btn btn-primary btn-sm" style="flex:1" onclick="window.location.hash='challenge/${take.id}'">Contredire cette take</button>
+      <div style="margin-top:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+        <button class="btn btn-primary btn-sm" onclick="window.location.hash='challenge/${take.id}'">Contredire cette take</button>
+        <button class="btn btn-secondary btn-sm" onclick="openShareModal('${take.id}')">Partager (acte documentaire)</button>
       </div>
     </div>
 
@@ -721,6 +722,183 @@ function contradictWithoutStake() {
     }
   );
 }
+
+// ===== SHARE MODAL =====
+
+const SHARE_TEMPLATES = {
+  draft: {
+    badge: '[NOUVELLE TAKE]',
+    badgeClass: 'og-badge--deposit',
+    cardClass: 'og-image-card--deposit',
+    status: 'EN AUDIT DE PROTOCOLE',
+    hash: '// sceau d\'intégrité calculé après audit',
+    text: (t) => `Nouvelle take déposée au registre Stake.\n\n"${t.title}"\n\nAuteur : ${t.author} · Mise : ${t.amount} · Échéance : ${t.deadline}\nOracle : ${t.source}\n\nProtocole soumis à l'audit.`
+  },
+  sealed: {
+    badge: '[CONTRAT SCELLÉ]',
+    badgeClass: 'og-badge--sealed',
+    cardClass: 'og-image-card--sealed',
+    status: 'SCELLÉE · OUVERTE À CONTRADICTION',
+    text: (t) => `Take scellée au registre Stake.\n\n"${t.title}"\n\nAuteur : ${t.author}${t.challenger ? ` · Contradicteur : ${t.challenger.name}` : ' (mode unilatéral)'} · Échéance : ${t.deadline}\n\nLe contrat est public, immuable et ouvert à contradiction jusqu'à l'échéance.`
+  },
+  resolving: {
+    badge: '[ÉCHÉANCE ATTEINTE]',
+    badgeClass: 'og-badge--resolving',
+    cardClass: 'og-image-card--resolving',
+    status: 'INTERROGATION DE L\'ORACLE',
+    text: (t) => `Échéance atteinte sur Stake. Oracle interrogé.\n\n"${t.title}"\n\nSource : ${t.source}\nRésolution en cours. Le verdict sera horodaté et archivé au registre.`
+  },
+  resolved: {
+    badge: '[RÉSOLUE]',
+    badgeClass: 'og-badge--true',
+    cardClass: 'og-image-card--resolved-true',
+    status: 'RÉSOLUE',
+    text: (t) => `Take résolue sur Stake.\n\n"${t.title}"\n\nVerdict : à compléter selon le résultat de l'oracle\nAuteur : ${t.author}\n\nContrat archivé au registre public, consultable indéfiniment.`
+  }
+};
+
+function openShareModal(takeId) {
+  const take = TAKES.find(t => t.id === takeId);
+  if (!take) return;
+
+  const overlay = document.getElementById('share-overlay');
+  if (!overlay) return;
+
+  const stateKey = ['sealed', 'resolving', 'resolved'].includes(take.status) ? take.status : 'draft';
+  const tpl = SHARE_TEMPLATES[stateKey];
+
+  // Build preview card based on take state
+  const previewFrame = document.getElementById('share-preview-frame');
+  if (previewFrame) {
+    previewFrame.innerHTML = buildPreviewCard(take, tpl);
+  }
+
+  // Pre-fill share text
+  const textArea = document.getElementById('share-text');
+  if (textArea) {
+    textArea.value = tpl.text(take);
+  }
+
+  // Build canonical URL (simulated for the proto)
+  const canonical = `https://stake.example/take/${take.id}`;
+  const linkOutput = document.getElementById('share-link-output');
+  if (linkOutput) linkOutput.textContent = canonical;
+
+  // Build channel intents
+  const shareText = encodeURIComponent(tpl.text(take));
+  const encodedUrl = encodeURIComponent(canonical);
+
+  const twitter = document.getElementById('share-twitter');
+  if (twitter) twitter.href = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`;
+
+  const linkedin = document.getElementById('share-linkedin');
+  if (linkedin) linkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+
+  const bluesky = document.getElementById('share-bluesky');
+  if (bluesky) bluesky.href = `https://bsky.app/intent/compose?text=${shareText}%20${encodedUrl}`;
+
+  const mastodon = document.getElementById('share-mastodon');
+  if (mastodon) mastodon.href = `https://mastodonshare.com/?text=${shareText}&url=${encodedUrl}`;
+
+  overlay.classList.add('visible');
+  document.body.style.overflow = 'hidden';
+
+  overlay.dataset.takeId = take.id;
+}
+
+function closeShareModal() {
+  const overlay = document.getElementById('share-overlay');
+  if (!overlay) return;
+  overlay.classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
+function buildPreviewCard(take, tpl) {
+  const hash = (tpl.hash || `sha256:${generateHash(take.id)}`).replace(/^sha256:/, 'sha256:');
+  const challengerHtml = take.challenger ? `
+    <div class="og-meta-item">
+      <div class="og-meta-label">CONTRADICTEUR</div>
+      <div class="og-meta-value">${take.challenger.name}</div>
+    </div>` : `
+    <div class="og-meta-item">
+      <div class="og-meta-label">MODE</div>
+      <div class="og-meta-value">unilatéral</div>
+    </div>`;
+
+  return `
+    <div class="og-image-card ${tpl.cardClass}">
+      <div class="og-header">
+        <div class="og-logo">S</div>
+        <div class="og-brand">STAKE</div>
+        <div class="og-id">${take.id}</div>
+      </div>
+      <div class="og-content">
+        <div class="og-badge ${tpl.badgeClass}">${tpl.badge}</div>
+        <h1 class="og-title">${take.title}</h1>
+        <div class="og-meta">
+          <div class="og-meta-item">
+            <div class="og-meta-label">AUTEUR</div>
+            <div class="og-meta-value">${take.author}</div>
+          </div>
+          <div class="og-meta-item">
+            <div class="og-meta-label">MISE</div>
+            <div class="og-meta-value og-amount">${take.amount}</div>
+          </div>
+          <div class="og-meta-item">
+            <div class="og-meta-label">ÉCHÉANCE</div>
+            <div class="og-meta-value">${take.deadline}</div>
+          </div>
+          ${challengerHtml}
+        </div>
+      </div>
+      <div class="og-footer">
+        <div class="og-status">${tpl.status}</div>
+        <div class="og-hash">${hash}</div>
+      </div>
+    </div>
+  `;
+}
+
+function copyShareLink() {
+  const linkOutput = document.getElementById('share-link-output');
+  if (!linkOutput) return;
+  const url = linkOutput.textContent;
+  navigator.clipboard?.writeText(url).then(
+    () => showToast('Lien canonique copié dans le presse-papier'),
+    () => showToast('Copie impossible — sélectionnez et copiez manuellement')
+  );
+}
+
+function downloadShareCard() {
+  showToast('Téléchargement PNG simulé — fonctionnalité backend à venir');
+}
+
+function copyEmbedCode() {
+  const overlay = document.getElementById('share-overlay');
+  const takeId = overlay?.dataset.takeId || 'STK-000';
+  const embed = `<iframe src="https://stake.example/embed/${takeId}" width="600" height="315" frameborder="0" style="border:1px solid #333"></iframe>`;
+  navigator.clipboard?.writeText(embed).then(
+    () => showToast('Code d\'embed copié'),
+    () => showToast('Copie impossible')
+  );
+}
+
+// Close share modal on overlay click or Escape
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('share-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeShareModal();
+    });
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const overlay = document.getElementById('share-overlay');
+    if (overlay?.classList.contains('visible')) closeShareModal();
+  }
+});
 
 // ===== FILTERS =====
 
@@ -865,11 +1043,18 @@ function renderSummary() {
 
 function submitTake() {
   showConfirm(
-    'Soumettre cette take ?',
-    'Cette action soumettra votre take à validation. Une fois soumise, vous ne pourrez plus la modifier.',
+    'Sceller et publier au registre ?',
+    'Le contrat sera publié au registre public. Le sceau d\'intégrité sera calculé et horodaté. Toute modification ultérieure produira une nouvelle version traçable. Vos fonds seront immobilisés jusqu\'à l\'échéance.',
     () => {
-      showToast('Take soumise avec succès !');
+      // Generate a fake hash and timestamp for the proto
+      const hashEl = document.getElementById('sealed-success-hash');
+      const tsEl = document.getElementById('sealed-success-timestamp');
+      if (hashEl) hashEl.textContent = `sha256:${generateHash('STK-NEW-' + Date.now())}`;
+      if (tsEl) tsEl.textContent = new Date().toISOString();
+      // Reset form for next use
       goToStep(1);
+      // Redirect to sealed success page
+      window.location.hash = 'sealed-success';
     }
   );
 }

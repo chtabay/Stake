@@ -973,45 +973,296 @@
   </main>
 
   <!-- ====== PAGE: OG PREVIEW ====== -->
+  <!-- ====== PAGE: SEALED SUCCESS ====== -->
+  <main id="page-sealed-success" class="page" role="main">
+    <div class="container-narrow">
+      <div class="sealed-success">
+        <div class="sealed-success-header">
+          <div class="sealed-success-eyebrow">[SCELLEMENT EFFECTUÉ]</div>
+          <h1>Votre take est désormais publique</h1>
+          <p>Le contrat a été scellé au registre. L'affirmation, le protocole, les mises et les identités sont compilés en un sceau d'intégrité horodaté. La take est consultable indéfiniment.</p>
+        </div>
+
+        <div class="sealed-success-summary" id="sealed-success-summary">
+          <!-- Populated by JS — but for now, static placeholder -->
+          <div class="sealed-success-row">
+            <span class="sealed-success-key">ID</span>
+            <span class="sealed-success-value sealed-success-value--mono">STK-NEW</span>
+          </div>
+          <div class="sealed-success-row">
+            <span class="sealed-success-key">SCEAU</span>
+            <span class="sealed-success-value sealed-success-value--mono" id="sealed-success-hash">sha256:...</span>
+          </div>
+          <div class="sealed-success-row">
+            <span class="sealed-success-key">HORODATAGE</span>
+            <span class="sealed-success-value sealed-success-value--mono" id="sealed-success-timestamp">—</span>
+          </div>
+          <div class="sealed-success-row">
+            <span class="sealed-success-key">URL CANONIQUE</span>
+            <span class="sealed-success-value sealed-success-value--mono">https://stake.example/take/STK-NEW</span>
+          </div>
+        </div>
+
+        <div class="sealed-success-share">
+          <div class="sealed-success-share-header">
+            <h2>[PARTAGE FORMEL]</h2>
+            <p>Comme un acte notarié ou une publication scientifique, votre take peut désormais être partagée. Pas pour la viralité — pour la traçabilité.</p>
+          </div>
+
+          <div class="sealed-success-share-actions">
+            <button class="btn btn-primary btn-lg" onclick="openShareModal('STK-002')">Ouvrir le panneau de partage</button>
+            <a href="#registre" class="btn btn-secondary btn-lg" data-nav="registre">Voir au registre</a>
+            <a href="#home" class="btn btn-ghost btn-lg" data-nav="home">Retour à l'accueil</a>
+          </div>
+
+          <div class="sealed-success-tips">
+            <div class="sealed-success-tips-title">[BONNES PRATIQUES DE PARTAGE]</div>
+            <ul>
+              <li>Ne reformulez pas l'affirmation : la version scellée fait foi.</li>
+              <li>Ne déformez pas le protocole : l'oracle est nommé, ne le résumez pas.</li>
+              <li>Évitez les superlatifs et les appels au clash dans le texte d'accompagnement.</li>
+              <li>L'URL canonique pointe toujours vers la version la plus récente — utile en cas d'amendement.</li>
+            </ul>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <div class="footer-inner">
+            <div class="footer-text">Stake — Infrastructure d'engagement vérifiable — 2026</div>
+            <div class="footer-links">
+              <a href="#manifesto" data-nav="manifesto">Manifeste</a>
+              <a href="https://github.com/chtabay/Stake" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+
   <main id="page-og-preview" class="page" role="main">
     <div class="container">
       <div class="section-header" style="margin-top: 2rem;">
-        <h2>Aperçu Open Graph</h2>
-        <p>Généré dynamiquement lors du partage d'une take sur les réseaux sociaux.</p>
+        <h2>[CARTES DE PARTAGE — 4 VARIANTES]</h2>
+        <p>Une carte sobre, documentaire, générée à chaque événement clé de la vie d'une take. Aucun appel à réaction, aucun superlatif — l'équivalent visuel d'un acte notarié.</p>
       </div>
-      
-      <div class="og-preview-container">
-        <div class="og-image-card">
-          <div class="og-header">
-            <div class="og-logo">S</div>
-            <div class="og-brand">STAKE</div>
-            <div class="og-id">STK-002</div>
-          </div>
-          
-          <div class="og-content">
-            <h1 class="og-title">L'IA générative représentera plus de 10% du PIB des services numériques en France d'ici 2028</h1>
-            
-            <div class="og-meta">
-              <div class="og-meta-item">
-                <div class="og-meta-label">ENGAGEMENT</div>
-                <div class="og-meta-value og-amount">1 200 €</div>
-              </div>
-              <div class="og-meta-item">
-                <div class="og-meta-label">ÉCHÉANCE</div>
-                <div class="og-meta-value">31 déc. 2028</div>
-              </div>
-              <div class="og-meta-item">
-                <div class="og-meta-label">AUTEUR</div>
-                <div class="og-meta-value">C. Turing</div>
+
+      <!-- VARIANTE 1 : DÉPÔT -->
+      <div class="og-variant-block">
+        <div class="og-variant-label">
+          <span class="og-variant-tag">[01_DÉPÔT]</span>
+          <span class="og-variant-desc">Au moment où l'auteur publie sa take. Pas encore scellée.</span>
+        </div>
+        <div class="og-preview-container">
+          <div class="og-image-card og-image-card--deposit">
+            <div class="og-header">
+              <div class="og-logo">S</div>
+              <div class="og-brand">STAKE</div>
+              <div class="og-id">STK-002</div>
+            </div>
+            <div class="og-content">
+              <div class="og-badge og-badge--deposit">[NOUVELLE TAKE]</div>
+              <h1 class="og-title">L'IA générative représentera plus de 10% du PIB des services numériques en France d'ici 2028</h1>
+              <div class="og-meta">
+                <div class="og-meta-item">
+                  <div class="og-meta-label">AUTEUR</div>
+                  <div class="og-meta-value">C. Turing</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">MISE</div>
+                  <div class="og-meta-value og-amount">1 200 €</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">ÉCHÉANCE</div>
+                  <div class="og-meta-value">31 déc. 2028</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">ORACLE</div>
+                  <div class="og-meta-value">INSEE BDM</div>
+                </div>
               </div>
             </div>
-          </div>
-          
-          <div class="og-footer">
-            <div class="og-status">EN NÉGOCIATION</div>
-            <div class="og-hash">sha256:b4e8c3d0e2f956a7018923bc4de5fa67890b1c2d3e4f5a6b7c8d9e0f1a2b3c4d</div>
+            <div class="og-footer">
+              <div class="og-status">EN AUDIT DE PROTOCOLE</div>
+              <div class="og-hash">// sceau d'intégrité calculé après audit</div>
+            </div>
           </div>
         </div>
+      </div>
+
+      <!-- VARIANTE 2 : SCELLÉE -->
+      <div class="og-variant-block">
+        <div class="og-variant-label">
+          <span class="og-variant-tag">[02_SCELLÉE]</span>
+          <span class="og-variant-desc">Contrat sceau&eacute; au registre. Ouvert à contradiction jusqu'à l'échéance.</span>
+        </div>
+        <div class="og-preview-container">
+          <div class="og-image-card og-image-card--sealed">
+            <div class="og-header">
+              <div class="og-logo">S</div>
+              <div class="og-brand">STAKE</div>
+              <div class="og-id">STK-002</div>
+            </div>
+            <div class="og-content">
+              <div class="og-badge og-badge--sealed">[CONTRAT SCELLÉ]</div>
+              <h1 class="og-title">L'IA générative représentera plus de 10% du PIB des services numériques en France d'ici 2028</h1>
+              <div class="og-meta">
+                <div class="og-meta-item">
+                  <div class="og-meta-label">AUTEUR</div>
+                  <div class="og-meta-value">C. Turing</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">CONTRADICTEUR</div>
+                  <div class="og-meta-value">A. Lovelace</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">MISE TOTALE</div>
+                  <div class="og-meta-value og-amount">2 000 €</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">ÉCHÉANCE</div>
+                  <div class="og-meta-value">31 déc. 2028</div>
+                </div>
+              </div>
+            </div>
+            <div class="og-footer">
+              <div class="og-status">SCELLÉE · OUVERTE À CONTRADICTION</div>
+              <div class="og-hash">sha256:b4e8c3d0e2f956a7018923bc4de5fa67890b1c2d3e4f5a6b7c8d9e0f1a2b3c4d</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIANTE 3 : EN RÉSOLUTION -->
+      <div class="og-variant-block">
+        <div class="og-variant-label">
+          <span class="og-variant-tag">[03_EN_RÉSOLUTION]</span>
+          <span class="og-variant-desc">Échéance atteinte. L'oracle est interrogé. La preuve est en cours de capture.</span>
+        </div>
+        <div class="og-preview-container">
+          <div class="og-image-card og-image-card--resolving">
+            <div class="og-header">
+              <div class="og-logo">S</div>
+              <div class="og-brand">STAKE</div>
+              <div class="og-id">STK-002</div>
+            </div>
+            <div class="og-content">
+              <div class="og-badge og-badge--resolving">[ÉCHÉANCE ATTEINTE]</div>
+              <h1 class="og-title">L'IA générative représentera plus de 10% du PIB des services numériques en France d'ici 2028</h1>
+              <div class="og-meta">
+                <div class="og-meta-item">
+                  <div class="og-meta-label">ÉCHÉANCE</div>
+                  <div class="og-meta-value">31 déc. 2028 — atteinte</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">ORACLE</div>
+                  <div class="og-meta-value">INSEE BDM</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">CAPTURE</div>
+                  <div class="og-meta-value">en cours</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">VERDICT</div>
+                  <div class="og-meta-value">en attente</div>
+                </div>
+              </div>
+            </div>
+            <div class="og-footer">
+              <div class="og-status">INTERROGATION DE L'ORACLE</div>
+              <div class="og-hash">sha256:b4e8c3d0e2f956a7018923bc4de5fa67890b1c2d3e4f5a6b7c8d9e0f1a2b3c4d</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIANTE 4A : RÉSOLUE VRAIE -->
+      <div class="og-variant-block">
+        <div class="og-variant-label">
+          <span class="og-variant-tag">[04A_RÉSOLUE_VRAIE]</span>
+          <span class="og-variant-desc">L'affirmation a été vérifiée. La mise de l'auteur est restituée.</span>
+        </div>
+        <div class="og-preview-container">
+          <div class="og-image-card og-image-card--resolved-true">
+            <div class="og-header">
+              <div class="og-logo">S</div>
+              <div class="og-brand">STAKE</div>
+              <div class="og-id">STK-002</div>
+            </div>
+            <div class="og-content">
+              <div class="og-badge og-badge--true">[RÉSOLUE — VRAIE]</div>
+              <h1 class="og-title">L'IA générative représentera plus de 10% du PIB des services numériques en France d'ici 2028</h1>
+              <div class="og-meta">
+                <div class="og-meta-item">
+                  <div class="og-meta-label">VERDICT</div>
+                  <div class="og-meta-value og-meta-value--accent">VRAI</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">SOURCE</div>
+                  <div class="og-meta-value">INSEE · 03 jan. 2029</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">AUTEUR</div>
+                  <div class="og-meta-value">C. Turing → mise restituée</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">CONTRADICTEUR</div>
+                  <div class="og-meta-value">A. Lovelace → mise reversée</div>
+                </div>
+              </div>
+            </div>
+            <div class="og-footer">
+              <div class="og-status">RÉSOLUE · 800 € REVERSÉS À RECHERCHE</div>
+              <div class="og-hash">sha256:b4e8c3d0e2f956a7018923bc4de5fa67890b1c2d3e4f5a6b7c8d9e0f1a2b3c4d</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIANTE 4B : RÉSOLUE FAUSSE -->
+      <div class="og-variant-block">
+        <div class="og-variant-label">
+          <span class="og-variant-tag">[04B_RÉSOLUE_FAUSSE]</span>
+          <span class="og-variant-desc">L'affirmation a été falsifiée. La mise de l'auteur est reversée à la cause.</span>
+        </div>
+        <div class="og-preview-container">
+          <div class="og-image-card og-image-card--resolved-false">
+            <div class="og-header">
+              <div class="og-logo">S</div>
+              <div class="og-brand">STAKE</div>
+              <div class="og-id">STK-002</div>
+            </div>
+            <div class="og-content">
+              <div class="og-badge og-badge--false">[RÉSOLUE — FAUSSE]</div>
+              <h1 class="og-title">L'IA générative représentera plus de 10% du PIB des services numériques en France d'ici 2028</h1>
+              <div class="og-meta">
+                <div class="og-meta-item">
+                  <div class="og-meta-label">VERDICT</div>
+                  <div class="og-meta-value og-meta-value--muted">FAUX</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">SOURCE</div>
+                  <div class="og-meta-value">INSEE · 03 jan. 2029</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">AUTEUR</div>
+                  <div class="og-meta-value">C. Turing → mise reversée</div>
+                </div>
+                <div class="og-meta-item">
+                  <div class="og-meta-label">CONTRADICTEUR</div>
+                  <div class="og-meta-value">A. Lovelace → mise restituée</div>
+                </div>
+              </div>
+            </div>
+            <div class="og-footer">
+              <div class="og-status">RÉSOLUE · 1 200 € REVERSÉS À RECHERCHE</div>
+              <div class="og-hash">sha256:b4e8c3d0e2f956a7018923bc4de5fa67890b1c2d3e4f5a6b7c8d9e0f1a2b3c4d</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="og-preview-note">
+        <p>// Une carte unique par take, mise à jour à chaque transition de cycle de vie. L'URL canonique reste stable ; seule l'image OG évolue. Format universel <strong>1200×630</strong> compatible Twitter/X, LinkedIn, Bluesky, Mastodon, et previews de messageries.</p>
       </div>
     </div>
   </main>
@@ -1070,6 +1321,81 @@
       <div class="confirm-dialog-actions">
         <button class="btn btn-secondary btn-sm" onclick="closeConfirm()">Annuler</button>
         <button class="btn btn-primary btn-sm" id="confirm-action">Confirmer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div class="share-overlay" id="share-overlay" role="dialog" aria-modal="true" aria-labelledby="share-title">
+    <div class="share-modal">
+      <div class="share-modal-header">
+        <div>
+          <div class="share-modal-eyebrow">[PARTAGE DOCUMENTAIRE]</div>
+          <h3 id="share-title">Partager cette take</h3>
+        </div>
+        <button class="share-close" onclick="closeShareModal()" aria-label="Fermer">×</button>
+      </div>
+
+      <div class="share-modal-body">
+        <div class="share-preview">
+          <div class="share-preview-label">[APERÇU DE LA CARTE]</div>
+          <div class="share-preview-frame" id="share-preview-frame">
+            <!-- Populated by JS based on current take state -->
+          </div>
+        </div>
+
+        <div class="share-text-section">
+          <div class="share-text-label">[TEXTE D'ACCOMPAGNEMENT]</div>
+          <textarea class="share-text" id="share-text" rows="4" readonly></textarea>
+          <p class="share-text-note">// Ton minimal, factuel, sans superlatif ni hashtag. Adapté à la nature documentaire de Stake. Personnalisable avant publication.</p>
+        </div>
+
+        <div class="share-channels">
+          <div class="share-channels-label">[CANAUX]</div>
+          <div class="share-channels-grid">
+            <a class="share-channel" id="share-twitter" target="_blank" rel="noopener" href="#">
+              <span class="share-channel-name">Twitter / X</span>
+              <span class="share-channel-meta">format 1200×675</span>
+            </a>
+            <a class="share-channel" id="share-linkedin" target="_blank" rel="noopener" href="#">
+              <span class="share-channel-name">LinkedIn</span>
+              <span class="share-channel-meta">format 1200×627</span>
+            </a>
+            <a class="share-channel" id="share-bluesky" target="_blank" rel="noopener" href="#">
+              <span class="share-channel-name">Bluesky</span>
+              <span class="share-channel-meta">composer pré-rempli</span>
+            </a>
+            <a class="share-channel" id="share-mastodon" target="_blank" rel="noopener" href="#">
+              <span class="share-channel-name">Mastodon</span>
+              <span class="share-channel-meta">instance au choix</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="share-tools">
+          <div class="share-tools-label">[OUTILS]</div>
+          <div class="share-tools-grid">
+            <button class="share-tool" onclick="copyShareLink()">
+              <div class="share-tool-name">Copier le lien canonique</div>
+              <div class="share-tool-desc">URL stable de la take, pointe vers la version la plus récente</div>
+              <code class="share-tool-output" id="share-link-output">https://stake.example/take/STK-002</code>
+            </button>
+            <button class="share-tool" onclick="downloadShareCard()">
+              <div class="share-tool-name">Télécharger la carte (PNG)</div>
+              <div class="share-tool-desc">Pour repartage manuel ou archivage hors plateforme</div>
+              <code class="share-tool-output">stake-STK-002.png · 1200×630</code>
+            </button>
+            <button class="share-tool" onclick="copyEmbedCode()">
+              <div class="share-tool-name">Copier le code d'embed</div>
+              <div class="share-tool-desc">Pour intégrer la take dans un blog ou un site externe</div>
+              <code class="share-tool-output">&lt;iframe src=&quot;.../embed/STK-002&quot; ... /&gt;</code>
+            </button>
+          </div>
+        </div>
+
+        <div class="share-footer-note">
+          <p>// Stake n'incite pas au partage viral. Cette fonctionnalité existe pour documenter l'engagement, pas pour le promouvoir. Le ton et le format restent volontairement sobres.</p>
+        </div>
       </div>
     </div>
   </div>
